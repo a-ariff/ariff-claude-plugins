@@ -22,6 +22,171 @@ Or install specific plugins:
 bash scripts/install.sh --plugin architect-agent
 ```
 
+## 📊 Architecture Overview
+
+### Repository Structure
+
+```mermaid
+graph TB
+    subgraph "Public GitHub"
+        MPR[ariff-claude-plugins<br/>PUBLIC MARKETPLACE<br/>41 Plugins]
+    end
+
+    subgraph "Private Config"
+        PCR[Ariff-code-config<br/>PRIVATE SETTINGS<br/>MCP configs, credentials]
+    end
+
+    subgraph "Local Installation"
+        CLAUDE[~/.claude/<br/>agents/ skills/ hooks/ commands/]
+    end
+
+    subgraph "Cloud Memory"
+        OMEM[OpenMemory<br/>User preferences<br/>Cross-session context]
+    end
+
+    MPR -->|git clone + install.sh| CLAUDE
+    PCR -->|sync-from-marketplace.sh| PCR
+    MPR -->|pull updates| PCR
+    PCR -->|setup-device.sh| CLAUDE
+    CLAUDE <-->|mcp tools| OMEM
+
+    style MPR fill:#4CAF50,color:#fff
+    style PCR fill:#2196F3,color:#fff
+    style CLAUDE fill:#FF9800,color:#fff
+    style OMEM fill:#9C27B0,color:#fff
+```
+
+### Installation Flow
+
+```mermaid
+flowchart LR
+    A[User runs<br/>install.sh] --> B{Check<br/>Category}
+
+    B -->|agents| C[Copy to<br/>~/.claude/agents/]
+    B -->|skills| D[Copy to<br/>~/.claude/skills/]
+    B -->|hooks| E[Copy to<br/>~/.claude/hooks/]
+    B -->|commands| F[Copy to<br/>~/.claude/commands/]
+
+    C --> G[Verify<br/>Installation]
+    D --> G
+    E --> G
+    F --> G
+
+    G --> H{All OK?}
+    H -->|Yes| I[✓ Ready to Use]
+    H -->|No| J[Show Errors]
+
+    style A fill:#4CAF50,color:#fff
+    style I fill:#4CAF50,color:#fff
+    style J fill:#f44336,color:#fff
+```
+
+### Plugin Categories Breakdown
+
+```mermaid
+pie title "41 Plugins by Category"
+    "Agents (21)" : 21
+    "Skills (15)" : 15
+    "Hooks (2)" : 2
+    "Commands (2)" : 2
+```
+
+```mermaid
+graph TD
+    ROOT[41 Plugins]
+
+    ROOT --> AGENTS[Agents: 21]
+    ROOT --> SKILLS[Skills: 15]
+    ROOT --> HOOKS[Hooks: 2]
+    ROOT --> CMDS[Commands: 2]
+
+    AGENTS --> DEV[Development: 8<br/>architect, backend-dev,<br/>frontend-dev, etc]
+    AGENTS --> ANALYSIS[Analysis: 4<br/>sequential-thinker,<br/>project-planner, etc]
+    AGENTS --> CHECK[Checkers: 7<br/>assumption-checker,<br/>fact-checker, etc]
+    AGENTS --> SPEC[Specialized: 2<br/>smithery-deploy,<br/>smart-routing]
+
+    SKILLS --> SUPER[Superpowers: 10<br/>brainstorming,<br/>systematic-debugging, etc]
+    SKILLS --> DEVSKILL[Development: 3<br/>github-operations,<br/>plugin-creator, etc]
+    SKILLS --> REF[Reference: 2<br/>hooks-reference,<br/>canvas-api]
+
+    HOOKS --> PRE[assumption-checker<br/>PreToolUse]
+    HOOKS --> POST[memory-sync<br/>Stop]
+
+    CMDS --> SEARCH[deep-search<br/>Multi-source]
+    CMDS --> FOLDER[task-folder-manager<br/>Organization]
+
+    style ROOT fill:#9C27B0,color:#fff
+    style AGENTS fill:#4CAF50,color:#fff
+    style SKILLS fill:#FF9800,color:#fff
+    style HOOKS fill:#2196F3,color:#fff
+    style CMDS fill:#f44336,color:#fff
+```
+
+### Cross-Device Sync
+
+```mermaid
+sequenceDiagram
+    participant Mac as Mac Device
+    participant OneDrive as OneDrive Sync
+    participant Windows as Windows Device
+    participant GitHub as GitHub Repo
+
+    Mac->>OneDrive: Edit plugin locally
+    OneDrive->>Windows: Auto-sync changes
+
+    Mac->>GitHub: git push
+    Windows->>GitHub: git pull
+
+    Note over Mac,Windows: Both devices stay synced<br/>via OneDrive + Git
+
+    Windows->>Windows: Run setup-device.sh
+    Note over Windows: Installs to ~/.claude/
+```
+
+### How AIs Access Your Setup
+
+```mermaid
+graph TB
+    subgraph "AI Assistants"
+        CLAUDE[Claude Code]
+        COPILOT[GitHub Copilot]
+        CODEX[Codex CLI]
+    end
+
+    subgraph "Instruction Files"
+        CLAUDEMD[claude/CLAUDE.md]
+        COPILOTMD[copilot/copilot-instructions.md]
+        AGENTMD[codex/AGENT.md]
+    end
+
+    subgraph "Shared Resources"
+        UNIFIED[UNIFIED_AI_CONTEXT.md]
+        PLUGINS[.claude-plugin/plugins/]
+        MEMORY[OpenMemory Cloud]
+    end
+
+    CLAUDE --> CLAUDEMD
+    COPILOT --> COPILOTMD
+    CODEX --> AGENTMD
+
+    CLAUDE --> UNIFIED
+    COPILOT --> UNIFIED
+    CODEX --> UNIFIED
+
+    CLAUDE --> PLUGINS
+    COPILOT --> PLUGINS
+    CODEX --> PLUGINS
+
+    CLAUDE <--> MEMORY
+    COPILOT <--> MEMORY
+    CODEX <--> MEMORY
+
+    style CLAUDE fill:#4CAF50,color:#fff
+    style COPILOT fill:#2196F3,color:#fff
+    style CODEX fill:#FF9800,color:#fff
+    style MEMORY fill:#9C27B0,color:#fff
+```
+
 ## 🎯 Plugin Categories
 
 ### 🤖 Agents (21)
