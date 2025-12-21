@@ -1,0 +1,9 @@
+{
+  "name": "memory-sync",
+  "version": "1.0.0",
+  "description": "Syncs task learnings to mem0 and obsidian - asks before saving, option to create agent instructions",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

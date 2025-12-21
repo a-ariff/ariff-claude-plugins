@@ -1,0 +1,9 @@
+{
+  "name": "rollback-planner",
+  "version": "1.0.0",
+  "description": "Agent plugin for rollback-planner",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

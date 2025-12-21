@@ -1,0 +1,9 @@
+{
+  "name": "github-operations",
+  "version": "1.0.0",
+  "description": "Handles Git operations with human-style commits (no AI markers). Use when user mentions git, commits, committing code, pushing changes, or wants natural developer-style commit messages. Never includes AI attribution or automated markers.",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

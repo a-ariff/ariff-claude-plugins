@@ -1,0 +1,9 @@
+{
+  "name": "dependency-validator",
+  "version": "1.0.0",
+  "description": "Agent plugin for dependency-validator",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "name": "task-folder-manager",
+  "version": "1.0.0",
+  "description": "Creates dated task folders in OneDrive projects with device name",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

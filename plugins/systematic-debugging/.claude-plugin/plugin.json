@@ -1,0 +1,9 @@
+{
+  "name": "systematic-debugging",
+  "version": "1.0.0",
+  "description": "Structured approach to finding and fixing bugs",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

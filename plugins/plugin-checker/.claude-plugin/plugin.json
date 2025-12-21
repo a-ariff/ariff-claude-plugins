@@ -1,0 +1,9 @@
+{
+  "name": "plugin-checker",
+  "version": "1.0.0",
+  "description": "Skill for validating Claude Code plugin structure and detecting issues",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

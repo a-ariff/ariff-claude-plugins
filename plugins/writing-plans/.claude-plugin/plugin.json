@@ -1,0 +1,9 @@
+{
+  "name": "writing-plans",
+  "version": "1.0.0",
+  "description": "Create detailed implementation plans with bite-sized tasks",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

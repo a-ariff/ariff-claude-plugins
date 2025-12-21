@@ -1,0 +1,9 @@
+{
+  "name": "smart-routing",
+  "version": "1.0.0",
+  "description": "Model-specific task routing with Opus for planning, Sonnet for execution, Haiku for quick tasks",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

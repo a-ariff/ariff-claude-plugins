@@ -1,0 +1,14 @@
+{
+  "PreToolUse": [
+    {
+      "matcher": "*",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/check-assumptions.sh",
+          "timeout": 10
+        }
+      ]
+    }
+  ]
+}

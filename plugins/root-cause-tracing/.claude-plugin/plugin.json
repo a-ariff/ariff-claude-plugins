@@ -1,0 +1,9 @@
+{
+  "name": "root-cause-tracing",
+  "version": "1.0.0",
+  "description": "Trace bugs backward to their origin, not just symptoms",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

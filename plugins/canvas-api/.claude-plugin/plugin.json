@@ -1,0 +1,9 @@
+{
+  "name": "canvas-api",
+  "version": "1.0.0",
+  "description": "Canvas LMS API connection guide and MCP tools reference",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

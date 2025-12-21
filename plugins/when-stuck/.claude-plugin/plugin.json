@@ -1,0 +1,9 @@
+{
+  "name": "when-stuck",
+  "version": "1.0.0",
+  "description": "Dispatch to right technique when you hit a wall",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

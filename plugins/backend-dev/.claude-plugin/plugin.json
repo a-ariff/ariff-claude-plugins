@@ -1,0 +1,9 @@
+{
+  "name": "backend-dev",
+  "version": "1.0.0",
+  "description": "Backend development specialist for APIs, databases, server-side logic, and system integration. Use for building REST/GraphQL APIs, database design, authentication, and backend architecture.",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

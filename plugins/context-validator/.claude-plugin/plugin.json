@@ -1,0 +1,9 @@
+{
+  "name": "context-validator",
+  "version": "1.0.0",
+  "description": "Agent plugin for context-validator",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

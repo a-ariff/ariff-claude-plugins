@@ -1,0 +1,9 @@
+{
+  "name": "pre-action-verifier",
+  "version": "1.0.0",
+  "description": "Agent plugin for pre-action-verifier",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

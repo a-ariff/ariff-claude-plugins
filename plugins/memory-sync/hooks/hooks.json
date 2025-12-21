@@ -1,0 +1,13 @@
+{
+  "Stop": [
+    {
+      "matcher": "*",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "📝 Task completed! Would you like me to:\n\n1. **Save to memory** - Store this task's learnings to mem0 + obsidian\n2. **Create agent instruction** - Create a rule to avoid similar issues\n3. **Both** - Save memory AND create instruction\n4. **Skip** - Don't save anything\n\nReply with 1, 2, 3, or 4 (or describe what you'd like to save)"
+        }
+      ]
+    }
+  ]
+}

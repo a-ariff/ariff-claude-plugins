@@ -1,0 +1,9 @@
+{
+  "name": "performance-engineer",
+  "version": "1.0.0",
+  "description": "Performance optimization specialist for identifying bottlenecks and improving speed. Use for performance analysis, profiling, optimization, and scalability improvements.",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

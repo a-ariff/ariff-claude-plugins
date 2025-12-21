@@ -1,0 +1,9 @@
+{
+  "name": "smithery-deployment-agent",
+  "version": "1.0.0",
+  "description": "Manages Canvas Student MCP Server deployment to Smithery AI platform. Use for publishing servers, managing Cloudflare workers, and handling OAuth configuration on ariff.dev domain.",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

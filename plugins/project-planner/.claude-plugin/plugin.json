@@ -1,0 +1,9 @@
+{
+  "name": "project-planner",
+  "version": "1.0.0",
+  "description": "Use this agent before starting any project or complex task. It analyzes requirements, explores the codebase, identifies dependencies, assesses risks, and creates a detailed execution plan. Invoke this agent when you need to plan before coding, understand project scope, or create a roadmap.",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

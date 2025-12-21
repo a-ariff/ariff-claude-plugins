@@ -1,0 +1,9 @@
+{
+  "name": "analyzer",
+  "version": "1.0.0",
+  "description": "Code analysis and metrics specialist. Use for codebase analysis, complexity metrics, dependency analysis, and generating insights about code quality and structure.",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

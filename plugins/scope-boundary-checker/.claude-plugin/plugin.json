@@ -1,0 +1,9 @@
+{
+  "name": "scope-boundary-checker",
+  "version": "1.0.0",
+  "description": "Agent plugin for scope-boundary-checker",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

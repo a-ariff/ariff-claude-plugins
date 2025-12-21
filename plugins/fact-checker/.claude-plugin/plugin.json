@@ -1,0 +1,9 @@
+{
+  "name": "fact-checker",
+  "version": "1.0.0",
+  "description": "Agent plugin for fact-checker",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

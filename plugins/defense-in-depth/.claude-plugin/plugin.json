@@ -1,0 +1,9 @@
+{
+  "name": "defense-in-depth",
+  "version": "1.0.0",
+  "description": "Multi-layer validation to catch bugs before they escape",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

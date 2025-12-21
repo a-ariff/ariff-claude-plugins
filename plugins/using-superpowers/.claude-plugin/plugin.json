@@ -1,0 +1,9 @@
+{
+  "name": "using-superpowers",
+  "version": "1.0.0",
+  "description": "Core skill activation protocol - establishes mandatory workflows for finding and applying skills before any task",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

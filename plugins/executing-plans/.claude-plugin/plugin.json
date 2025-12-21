@@ -1,0 +1,9 @@
+{
+  "name": "executing-plans",
+  "version": "1.0.0",
+  "description": "Execute implementation plans in batches with review checkpoints",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

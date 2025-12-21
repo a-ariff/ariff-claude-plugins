@@ -1,0 +1,9 @@
+{
+  "name": "architect",
+  "version": "1.0.0",
+  "description": "System architecture and design specialist. Use for designing scalable systems, making architectural decisions, creating technical specifications, or refactoring system structure.",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

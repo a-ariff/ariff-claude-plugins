@@ -1,0 +1,9 @@
+{
+  "name": "setup-orchestrator",
+  "version": "1.0.0",
+  "description": "Meta-agent that orchestrates and tracks the complete Claude Code configuration setup process. Use this agent to continue setup work across sessions, track progress, and understand what was done vs what needs to be done. Invoke when continuing the configuration setup or troubleshooting setup issues.",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

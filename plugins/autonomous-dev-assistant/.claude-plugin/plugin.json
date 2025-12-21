@@ -1,0 +1,9 @@
+{
+  "name": "autonomous-dev-assistant",
+  "version": "1.0.0",
+  "description": "Fully autonomous development assistant that handles all technical tasks including git operations without asking for permission. Use for feature implementation, bug fixes, refactoring, and code changes that need commits.",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

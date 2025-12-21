@@ -1,0 +1,42 @@
+# OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+*~
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+
+# Node
+node_modules/
+npm-debug.log*
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# Local development
+.env
+.env.local
+*.local
+
+# Session exports (don't commit these)
+2025-*.txt
+session-*.json
+*.session.md

@@ -1,0 +1,9 @@
+{
+  "name": "deep-search",
+  "version": "1.0.0",
+  "description": "Semantic deep search across GitHub, Reddit, vendor docs based on topic",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

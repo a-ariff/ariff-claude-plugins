@@ -1,0 +1,9 @@
+{
+  "name": "security-analyst",
+  "version": "1.0.0",
+  "description": "Security specialist for vulnerability assessment, threat modeling, and secure code review. Use for security audits, penetration testing guidance, and implementing security best practices.",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

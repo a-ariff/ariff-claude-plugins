@@ -1,0 +1,9 @@
+{
+  "name": "refactorer",
+  "version": "1.0.0",
+  "description": "Code refactoring specialist focused on improving code structure and maintainability. Use for cleaning up technical debt, improving code quality, and systematic refactoring.",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

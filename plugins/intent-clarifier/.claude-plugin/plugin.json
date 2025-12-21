@@ -1,0 +1,9 @@
+{
+  "name": "intent-clarifier",
+  "version": "1.0.0",
+  "description": "Agent plugin for intent-clarifier",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

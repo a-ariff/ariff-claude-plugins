@@ -1,0 +1,9 @@
+{
+  "name": "verification-before-completion",
+  "version": "1.0.0",
+  "description": "Never claim completion without fresh verification evidence",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}

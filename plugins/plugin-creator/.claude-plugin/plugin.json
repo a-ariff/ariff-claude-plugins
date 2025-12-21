@@ -1,0 +1,9 @@
+{
+  "name": "plugin-creator",
+  "version": "1.0.0",
+  "description": "Skill for creating Claude Code plugins with proper structure and best practices",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  }
+}
