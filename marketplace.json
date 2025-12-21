@@ -339,6 +339,118 @@
       "version": "1.0.0",
       "category": "commands",
       "tags": ["search", "research", "multi-source"]
+    },
+    {
+      "name": "api-docs-generator",
+      "source": "./plugins/api-docs-generator",
+      "description": "Generate comprehensive API documentation from code",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["documentation", "api", "development"]
+    },
+    {
+      "name": "ci-cd-helper",
+      "source": "./plugins/ci-cd-helper",
+      "description": "CI/CD pipeline configuration and troubleshooting",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["ci-cd", "automation", "devops"]
+    },
+    {
+      "name": "code-reviewer",
+      "source": "./plugins/code-reviewer",
+      "description": "Comprehensive code review with best practices",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["review", "quality", "development"]
+    },
+    {
+      "name": "commit-message-generator",
+      "source": "./plugins/commit-message-generator",
+      "description": "Generate conventional commit messages",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["git", "commits", "development"]
+    },
+    {
+      "name": "error-explainer",
+      "source": "./plugins/error-explainer",
+      "description": "Explain errors and suggest fixes",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["debugging", "errors", "development"]
+    },
+    {
+      "name": "github",
+      "source": "./plugins/github",
+      "description": "GitHub workflow and operations guide",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["github", "git", "development"]
+    },
+    {
+      "name": "manage-smithery-deployment",
+      "source": "./plugins/manage-smithery-deployment",
+      "description": "Smithery MCP server deployment management",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["deployment", "mcp", "smithery"]
+    },
+    {
+      "name": "performance-optimizer",
+      "source": "./plugins/performance-optimizer",
+      "description": "Code performance optimization techniques",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["performance", "optimization", "development"]
+    },
+    {
+      "name": "pr-analyzer",
+      "source": "./plugins/pr-analyzer",
+      "description": "Pull request analysis and feedback",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["github", "pr", "review"]
+    },
+    {
+      "name": "refactor-assistant",
+      "source": "./plugins/refactor-assistant",
+      "description": "Code refactoring guidance and patterns",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["refactoring", "patterns", "development"]
+    },
+    {
+      "name": "security-scanner",
+      "source": "./plugins/security-scanner",
+      "description": "Security vulnerability scanning and recommendations",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["security", "scanning", "development"]
+    },
+    {
+      "name": "systematic-debugger",
+      "source": "./plugins/systematic-debugger",
+      "description": "Systematic debugging methodology and tools",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["debugging", "systematic", "development"]
+    },
+    {
+      "name": "tdd-workflow",
+      "source": "./plugins/tdd-workflow",
+      "description": "Test-driven development workflow guidance",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["testing", "tdd", "development"]
+    },
+    {
+      "name": "test-writer",
+      "source": "./plugins/test-writer",
+      "description": "Automated test generation and patterns",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": ["testing", "automation", "development"]
     }
   ]
 }

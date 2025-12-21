@@ -1,0 +1,8 @@
+{
+  "name": "tdd-workflow",
+  "version": "1.0.0",
+  "type": "skill",
+  "skills": [
+    "skills/tdd-workflow.skill.md"
+  ]
+}

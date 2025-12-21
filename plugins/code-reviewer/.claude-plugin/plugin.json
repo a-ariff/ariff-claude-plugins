@@ -1,0 +1,8 @@
+{
+  "name": "code-reviewer",
+  "version": "1.0.0",
+  "type": "skill",
+  "skills": [
+    "skills/code-reviewer.skill.md"
+  ]
+}

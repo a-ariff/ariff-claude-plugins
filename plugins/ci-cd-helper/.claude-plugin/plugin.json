@@ -1,0 +1,8 @@
+{
+  "name": "ci-cd-helper",
+  "version": "1.0.0",
+  "type": "skill",
+  "skills": [
+    "skills/ci-cd-helper.skill.md"
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "name": "error-explainer",
+  "version": "1.0.0",
+  "type": "skill",
+  "skills": [
+    "skills/error-explainer.skill.md"
+  ]
+}
