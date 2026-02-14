@@ -2,8 +2,7 @@
   "name": "ariff-claude-plugins",
   "owner": {
     "name": "Ariff",
-    "email": "i@ariff.dev",
-    "github": "a-ariff"
+    "email": "i@ariff.dev"
   },
   "metadata": {
     "description": "Ariff's Claude Code plugin marketplace - production-ready agents, skills, hooks, and commands",
