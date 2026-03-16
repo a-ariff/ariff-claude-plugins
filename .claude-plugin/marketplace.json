@@ -5,299 +5,90 @@
     "email": "i@ariff.dev"
   },
   "metadata": {
-    "description": "Ariff's Claude Code plugin marketplace - production-ready agents, skills, hooks, and commands",
-    "version": "2.0.0",
+    "description": "Production-ready Claude Code plugin marketplace with autonomous agents, power skills, smart hooks, and custom commands",
+    "version": "3.0.0",
     "license": "MIT",
-    "repository": "https://github.com/a-ariff/ariff-claude-plugins"
+    "repository": "https://github.com/a-ariff/ariff-claude-plugins",
+    "claude_code_version": "2.1.76+",
+    "models_supported": [
+      "claude-opus-4-6",
+      "claude-sonnet-4-6",
+      "claude-haiku-4-5"
+    ]
   },
   "plugins": [
     {
-      "name": "architect-agent",
-      "source": "./plugins/architect",
-      "description": "System design and architecture decisions",
+      "name": "analyzer",
+      "source": "./plugins/analyzer",
+      "description": "Code analysis and metrics specialist. Use for codebase analysis, complexity metrics, dependency analysis, and generating insights about code quality and structure.",
       "version": "1.0.0",
       "category": "agents",
-      "tags": ["design", "architecture"]
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "api-docs-generator",
+      "source": "./plugins/api-docs-generator",
+      "description": "name: api-docs-generator",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "architect",
+      "source": "./plugins/architect",
+      "description": "System architecture and design specialist. Use for designing scalable systems, making architectural decisions, creating technical specifications, or refactoring system structure.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "assumption-checker",
+      "source": "./plugins/assumption-checker",
+      "description": "Agent plugin for assumption-checker",
+      "version": "1.0.0",
+      "category": "hooks",
+      "tags": [
+        "hook",
+        "agent",
+        "validation",
+        "safety"
+      ]
     },
     {
       "name": "autonomous-dev-assistant",
       "source": "./plugins/autonomous-dev-assistant",
-      "description": "Independent development task automation",
+      "description": "Fully autonomous development assistant that handles all technical tasks including git operations without asking for permission. Use for feature implementation, bug fixes, refactoring, and code changes that need commits.",
       "version": "1.0.0",
       "category": "agents",
-      "tags": ["development", "automation"]
+      "tags": [
+        "agent"
+      ]
     },
     {
       "name": "backend-dev",
       "source": "./plugins/backend-dev",
-      "description": "Server-side development specialist",
+      "description": "Backend development specialist for APIs, databases, server-side logic, and system integration. Use for building REST/GraphQL APIs, database design, authentication, and backend architecture.",
       "version": "1.0.0",
       "category": "agents",
-      "tags": ["backend", "api"]
-    },
-    {
-      "name": "frontend-dev",
-      "source": "./plugins/frontend-dev",
-      "description": "UI/UX implementation specialist",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["frontend", "ui"]
-    },
-    {
-      "name": "performance-engineer",
-      "source": "./plugins/performance-engineer",
-      "description": "Performance optimization specialist",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["performance", "optimization"]
-    },
-    {
-      "name": "qa-engineer",
-      "source": "./plugins/qa-engineer",
-      "description": "Quality assurance and testing",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["testing", "qa"]
-    },
-    {
-      "name": "refactorer",
-      "source": "./plugins/refactorer",
-      "description": "Code refactoring specialist",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["refactoring", "cleanup"]
-    },
-    {
-      "name": "security-analyst",
-      "source": "./plugins/security-analyst",
-      "description": "Security analysis and vulnerability assessment",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["security", "audit"]
-    },
-    {
-      "name": "setup-orchestrator",
-      "source": "./plugins/setup-orchestrator",
-      "description": "Project setup and environment configuration",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["setup", "configuration"]
-    },
-    {
-      "name": "sequential-thinker",
-      "source": "./plugins/sequential-thinker",
-      "description": "Step-by-step reasoning and problem solving",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["reasoning", "thinking"]
-    },
-    {
-      "name": "project-planner",
-      "source": "./plugins/project-planner",
-      "description": "Project planning and task breakdown",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["planning", "tasks"]
-    },
-    {
-      "name": "analyzer",
-      "source": "./plugins/analyzer",
-      "description": "Code and system analysis",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["analysis", "code-review"]
-    },
-    {
-      "name": "mentor",
-      "source": "./plugins/mentor",
-      "description": "Learning guidance and skill development",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["learning", "teaching"]
-    },
-    {
-      "name": "smithery-deployment-agent",
-      "source": "./plugins/smithery-deployment-agent",
-      "description": "Smithery MCP deployment specialist",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["deployment", "mcp"]
-    },
-    {
-      "name": "context-validator",
-      "source": "./plugins/context-validator",
-      "description": "Ensures context is complete and accurate",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["context", "checkers"]
-    },
-    {
-      "name": "intent-clarifier",
-      "source": "./plugins/intent-clarifier",
-      "description": "Clarifies user intent before action",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["intent", "checkers"]
-    },
-    {
-      "name": "pre-action-verifier",
-      "source": "./plugins/pre-action-verifier",
-      "description": "Verifies prerequisites before actions",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["verification", "checkers"]
-    },
-    {
-      "name": "scope-boundary-checker",
-      "source": "./plugins/scope-boundary-checker",
-      "description": "Ensures actions stay within scope",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["scope", "checkers"]
-    },
-    {
-      "name": "fact-checker",
-      "source": "./plugins/fact-checker",
-      "description": "Verifies facts against codebase reality",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["facts", "checkers"]
-    },
-    {
-      "name": "dependency-validator",
-      "source": "./plugins/dependency-validator",
-      "description": "Validates package dependencies",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["dependencies", "checkers"]
-    },
-    {
-      "name": "rollback-planner",
-      "source": "./plugins/rollback-planner",
-      "description": "Plans rollback strategies before changes",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["rollback", "checkers"]
-    },
-    {
-      "name": "smart-routing",
-      "source": "./plugins/smart-routing",
-      "description": "Model-specific task routing - Opus for planning, Sonnet for execution, Haiku for quick tasks",
-      "version": "1.0.0",
-      "category": "agents",
-      "tags": ["routing", "multi-model", "optimization"]
-    },
-    {
-      "name": "github-operations",
-      "source": "./plugins/github-operations",
-      "description": "GitHub workflow and automation",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["github", "git"]
-    },
-    {
-      "name": "using-superpowers",
-      "source": "./plugins/using-superpowers",
-      "description": "Meta-skill for activating superpowers",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["superpowers", "meta"]
+      "tags": [
+        "agent"
+      ]
     },
     {
       "name": "brainstorming",
       "source": "./plugins/brainstorming",
-      "description": "Structured brainstorming techniques",
+      "description": "Transform rough ideas into solid designs through structured questioning",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["ideas", "superpowers"]
-    },
-    {
-      "name": "writing-plans",
-      "source": "./plugins/writing-plans",
-      "description": "Implementation plan creation",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["planning", "superpowers"]
-    },
-    {
-      "name": "executing-plans",
-      "source": "./plugins/executing-plans",
-      "description": "Plan execution with verification",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["execution", "superpowers"]
-    },
-    {
-      "name": "subagent-driven-development",
-      "source": "./plugins/subagent-driven-development",
-      "description": "Subagent delegation patterns",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["subagent", "superpowers"]
-    },
-    {
-      "name": "verification-before-completion",
-      "source": "./plugins/verification-before-completion",
-      "description": "Pre-completion verification",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["verification", "superpowers"]
-    },
-    {
-      "name": "root-cause-tracing",
-      "source": "./plugins/root-cause-tracing",
-      "description": "Root cause analysis techniques",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["debugging", "superpowers"]
-    },
-    {
-      "name": "defense-in-depth",
-      "source": "./plugins/defense-in-depth",
-      "description": "Multi-layer validation approach",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["validation", "superpowers"]
-    },
-    {
-      "name": "systematic-debugging",
-      "source": "./plugins/systematic-debugging",
-      "description": "Systematic debugging methodology",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["debugging", "superpowers"]
-    },
-    {
-      "name": "when-stuck",
-      "source": "./plugins/when-stuck",
-      "description": "Techniques for getting unstuck",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["problem-solving", "superpowers"]
-    },
-    {
-      "name": "plugin-creator",
-      "source": "./plugins/plugin-creator",
-      "description": "Comprehensive guide for creating Claude Code plugins",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["plugin-dev", "meta"]
-    },
-    {
-      "name": "plugin-checker",
-      "source": "./plugins/plugin-checker",
-      "description": "Plugin validation and structure verification",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["plugin-dev", "validation"]
-    },
-    {
-      "name": "hooks-reference",
-      "source": "./plugins/hooks-reference",
-      "description": "Hook events, patterns, and example implementations",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["hooks", "automation", "plugin-dev"]
+      "tags": [
+        "skill"
+      ]
     },
     {
       "name": "canvas-api",
@@ -305,151 +96,465 @@
       "description": "Canvas LMS API connection guide and MCP tools reference",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["canvas", "api", "lms"]
-    },
-    {
-      "name": "assumption-checker",
-      "source": "./plugins/assumption-checker",
-      "description": "Validates assumptions before actions, strict Canvas verification warnings",
-      "version": "1.0.0",
-      "category": "hooks",
-      "tags": ["validation", "safety", "canvas"]
-    },
-    {
-      "name": "memory-sync",
-      "source": "./plugins/memory-sync",
-      "description": "Syncs learnings to mem0 and obsidian with user confirmation",
-      "version": "1.0.0",
-      "category": "hooks",
-      "tags": ["memory", "sync", "learning"]
-    },
-    {
-      "name": "task-folder-manager",
-      "source": "./plugins/task-folder-manager",
-      "description": "Creates dated task folders with device name in OneDrive",
-      "version": "1.0.0",
-      "category": "commands",
-      "tags": ["organization", "tasks", "folders"]
-    },
-    {
-      "name": "deep-search",
-      "source": "./plugins/deep-search",
-      "description": "Semantic deep search across GitHub, Reddit, vendor docs",
-      "version": "1.0.0",
-      "category": "commands",
-      "tags": ["search", "research", "multi-source"]
-    },
-    {
-      "name": "api-docs-generator",
-      "source": "./plugins/api-docs-generator",
-      "description": "Generate comprehensive API documentation from code",
-      "version": "1.0.0",
-      "category": "skills",
-      "tags": ["documentation", "api", "development"]
+      "tags": [
+        "skill"
+      ]
     },
     {
       "name": "ci-cd-helper",
       "source": "./plugins/ci-cd-helper",
-      "description": "CI/CD pipeline configuration and troubleshooting",
+      "description": "name: ci-cd-helper",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["ci-cd", "automation", "devops"]
+      "tags": [
+        "skill"
+      ]
     },
     {
       "name": "code-reviewer",
       "source": "./plugins/code-reviewer",
-      "description": "Comprehensive code review with best practices",
+      "description": "name: code-reviewer",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["review", "quality", "development"]
+      "tags": [
+        "skill"
+      ]
     },
     {
       "name": "commit-message-generator",
       "source": "./plugins/commit-message-generator",
-      "description": "Generate conventional commit messages",
+      "description": "name: commit-message-generator",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["git", "commits", "development"]
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "context-validator",
+      "source": "./plugins/context-validator",
+      "description": "Agent plugin for context-validator",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "deep-search",
+      "source": "./plugins/deep-search",
+      "description": "Semantic deep search across GitHub, Reddit, vendor docs based on topic",
+      "version": "1.0.0",
+      "category": "commands",
+      "tags": [
+        "command"
+      ]
+    },
+    {
+      "name": "defense-in-depth",
+      "source": "./plugins/defense-in-depth",
+      "description": "Multi-layer validation to catch bugs before they escape",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "dependency-validator",
+      "source": "./plugins/dependency-validator",
+      "description": "Agent plugin for dependency-validator",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
     },
     {
       "name": "error-explainer",
       "source": "./plugins/error-explainer",
-      "description": "Explain errors and suggest fixes",
+      "description": "name: error-explainer",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["debugging", "errors", "development"]
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "executing-plans",
+      "source": "./plugins/executing-plans",
+      "description": "Execute implementation plans in batches with review checkpoints",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "fact-checker",
+      "source": "./plugins/fact-checker",
+      "description": "Agent plugin for fact-checker",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "frontend-dev",
+      "source": "./plugins/frontend-dev",
+      "description": "Frontend development specialist focusing on UI/UX, React, TypeScript, and modern web technologies. Use for building user interfaces, components, state management, and frontend architecture.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
     },
     {
       "name": "github",
       "source": "./plugins/github",
-      "description": "GitHub workflow and operations guide",
+      "description": "name: github",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["github", "git", "development"]
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "hooks-reference",
+      "source": "./plugins/hooks-reference",
+      "description": "Hook examples and reference implementation for Claude Code plugins",
+      "version": "1.0.0",
+      "category": "hooks",
+      "tags": [
+        "hook",
+        "skill",
+        "reference",
+        "automation"
+      ]
+    },
+    {
+      "name": "intent-clarifier",
+      "source": "./plugins/intent-clarifier",
+      "description": "Agent plugin for intent-clarifier",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
     },
     {
       "name": "manage-smithery-deployment",
       "source": "./plugins/manage-smithery-deployment",
-      "description": "Smithery MCP server deployment management",
+      "description": "name: manage-smithery-deployment",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["deployment", "mcp", "smithery"]
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "memory-sync",
+      "source": "./plugins/memory-sync",
+      "description": "Syncs task learnings to mem0 and obsidian - asks before saving, option to create agent instructions",
+      "version": "1.0.0",
+      "category": "hooks",
+      "tags": [
+        "hook",
+        "skill",
+        "memory",
+        "sync"
+      ]
+    },
+    {
+      "name": "mentor",
+      "source": "./plugins/mentor",
+      "description": "Educational mentor for teaching programming concepts, best practices, and guiding learning. Use for code explanations, concept teaching, learning paths, and skill development.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "performance-engineer",
+      "source": "./plugins/performance-engineer",
+      "description": "Performance optimization specialist for identifying bottlenecks and improving speed. Use for performance analysis, profiling, optimization, and scalability improvements.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
     },
     {
       "name": "performance-optimizer",
       "source": "./plugins/performance-optimizer",
-      "description": "Code performance optimization techniques",
+      "description": "name: performance-optimizer",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["performance", "optimization", "development"]
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "plugin-checker",
+      "source": "./plugins/plugin-checker",
+      "description": "Skill for validating Claude Code plugin structure and detecting issues",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "plugin-creator",
+      "source": "./plugins/plugin-creator",
+      "description": "Skill for creating Claude Code plugins with proper structure and best practices",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": [
+        "skill"
+      ]
     },
     {
       "name": "pr-analyzer",
       "source": "./plugins/pr-analyzer",
-      "description": "Pull request analysis and feedback",
+      "description": "name: pr-analyzer",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["github", "pr", "review"]
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "pre-action-verifier",
+      "source": "./plugins/pre-action-verifier",
+      "description": "Agent plugin for pre-action-verifier",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "project-planner",
+      "source": "./plugins/project-planner",
+      "description": "Use this agent before starting any project or complex task. It analyzes requirements, explores the codebase, identifies dependencies, assesses risks, and creates a detailed execution plan. Invoke this agent when you need to plan before coding, understand project scope, or create a roadmap.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "qa-engineer",
+      "source": "./plugins/qa-engineer",
+      "description": "Quality assurance specialist for test strategy, test automation, and comprehensive quality assessment. Use for creating test plans, building test suites, and ensuring software quality.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
     },
     {
       "name": "refactor-assistant",
       "source": "./plugins/refactor-assistant",
-      "description": "Code refactoring guidance and patterns",
+      "description": "name: refactor-assistant",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["refactoring", "patterns", "development"]
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "refactorer",
+      "source": "./plugins/refactorer",
+      "description": "Code refactoring specialist focused on improving code structure and maintainability. Use for cleaning up technical debt, improving code quality, and systematic refactoring.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "rollback-planner",
+      "source": "./plugins/rollback-planner",
+      "description": "Agent plugin for rollback-planner",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "root-cause-tracing",
+      "source": "./plugins/root-cause-tracing",
+      "description": "Trace bugs backward to their origin, not just symptoms",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "scope-boundary-checker",
+      "source": "./plugins/scope-boundary-checker",
+      "description": "Agent plugin for scope-boundary-checker",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "security-analyst",
+      "source": "./plugins/security-analyst",
+      "description": "Security specialist for vulnerability assessment, threat modeling, and secure code review. Use for security audits, penetration testing guidance, and implementing security best practices.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
     },
     {
       "name": "security-scanner",
       "source": "./plugins/security-scanner",
-      "description": "Security vulnerability scanning and recommendations",
+      "description": "name: security-scanner",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["security", "scanning", "development"]
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "sequential-thinker",
+      "source": "./plugins/sequential-thinker",
+      "description": "Specialized in breaking down complex problems into logical, sequential steps with clear reasoning. Use for complex problem-solving, architectural decisions, or when you need structured analytical thinking.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "setup-orchestrator",
+      "source": "./plugins/setup-orchestrator",
+      "description": "Meta-agent that orchestrates and tracks the complete Claude Code configuration setup process. Use this agent to continue setup work across sessions, track progress, and understand what was done vs what needs to be done. Invoke when continuing the configuration setup or troubleshooting setup issues.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "smart-routing",
+      "source": "./plugins/smart-routing",
+      "description": "Model-specific task routing with Opus for planning, Sonnet for execution, Haiku for quick tasks",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "smithery-deployment-agent",
+      "source": "./plugins/smithery-deployment-agent",
+      "description": "Manages Canvas Student MCP Server deployment to Smithery AI platform. Use for publishing servers, managing Cloudflare workers, and handling OAuth configuration on ariff.dev domain.",
+      "version": "1.0.0",
+      "category": "agents",
+      "tags": [
+        "agent"
+      ]
+    },
+    {
+      "name": "subagent-driven-development",
+      "source": "./plugins/subagent-driven-development",
+      "description": "Use fresh agents for focused subtasks to avoid context pollution",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": [
+        "skill"
+      ]
     },
     {
       "name": "systematic-debugger",
       "source": "./plugins/systematic-debugger",
-      "description": "Systematic debugging methodology and tools",
+      "description": "name: systematic-debugger",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["debugging", "systematic", "development"]
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "task-folder-manager",
+      "source": "./plugins/task-folder-manager",
+      "description": "Creates dated task folders in OneDrive projects with device name",
+      "version": "1.0.0",
+      "category": "commands",
+      "tags": [
+        "command"
+      ]
     },
     {
       "name": "tdd-workflow",
       "source": "./plugins/tdd-workflow",
-      "description": "Test-driven development workflow guidance",
+      "description": "name: tdd-workflow",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["testing", "tdd", "development"]
+      "tags": [
+        "skill"
+      ]
     },
     {
       "name": "test-writer",
       "source": "./plugins/test-writer",
-      "description": "Automated test generation and patterns",
+      "description": "name: test-writer",
       "version": "1.0.0",
       "category": "skills",
-      "tags": ["testing", "automation", "development"]
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "using-superpowers",
+      "source": "./plugins/using-superpowers",
+      "description": "Core skill activation protocol - establishes mandatory workflows for finding and applying skills before any task",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "verification-before-completion",
+      "source": "./plugins/verification-before-completion",
+      "description": "Never claim completion without fresh verification evidence",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "when-stuck",
+      "source": "./plugins/when-stuck",
+      "description": "Dispatch to right technique when you hit a wall",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": [
+        "skill"
+      ]
+    },
+    {
+      "name": "writing-plans",
+      "source": "./plugins/writing-plans",
+      "description": "Create detailed implementation plans with bite-sized tasks",
+      "version": "1.0.0",
+      "category": "skills",
+      "tags": [
+        "skill"
+      ]
     }
   ]
 }
