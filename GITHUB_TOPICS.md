@@ -6,7 +6,7 @@ All topics and description are already set via API. This file is a reference.
 ## Live Repository Description
 
 ```
-53 ready-to-use Claude Code plugins. 22 autonomous agents, 26 skills, 3 hooks. Works with Opus 4.6, Sonnet 4.6, Haiku 4.5. One-line install. Free and open source.
+53 plugins that turn Claude Code into an autonomous development team. Agents, skills, hooks. One-line install.
 ```
 
 
@@ -15,22 +15,22 @@ All topics and description are already set via API. This file is a reference.
 ```
 claude-code
 claude-code-plugins
+claude-code-agents
+claude-code-skills
+claude-code-hooks
 claude-ai
 claude-opus
 claude-sonnet
 ai-agents
 ai-plugins
 autonomous-agents
-ai-coding-assistant
-developer-tools
-llm-plugins
+ai-coding-tools
 ai-automation
+developer-tools
 code-assistant
 plugin-marketplace
-ai-developer-tools
 claude-extensions
 mcp-tools
-ai-productivity
 anthropic
 opensource
 ```
@@ -38,7 +38,17 @@ opensource
 
 ## Why These Topics
 
-High-traffic search terms (what people actually search for):
+Claude-specific topics (confirmed active on GitHub with real repos):
+  claude-code              -- main product topic, most repos
+  claude-code-plugins      -- exact match for plugin searches
+  claude-code-agents       -- active topic with dedicated repos
+  claude-code-skills       -- active topic for skill collections
+  claude-code-hooks        -- niche but specific to our offering
+  claude-ai                -- broad Claude brand search
+  claude-opus / claude-sonnet -- model-specific searches
+  claude-extensions        -- people extending Claude
+
+General AI/dev topics (high traffic):
   claude-code              -- primary product name
   claude-code-plugins      -- exact match for "claude code plugins" search
   claude-ai                -- brand search term
