@@ -4,7 +4,7 @@
   "description": "Syncs task learnings to mem0 and obsidian - asks before saving, option to create agent instructions",
   "author": {
     "name": "Ariff",
-    "email": "contact@ariff.dev"
+    "email": "info@ariff.dev"
   },
   "type": "skill"
 }

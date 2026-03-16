@@ -4,7 +4,7 @@
   "description": "Model-specific task routing with Opus for planning, Sonnet for execution, Haiku for quick tasks",
   "author": {
     "name": "Ariff",
-    "email": "contact@ariff.dev"
+    "email": "info@ariff.dev"
   },
   "type": "agent"
 }

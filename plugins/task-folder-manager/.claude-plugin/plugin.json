@@ -4,7 +4,7 @@
   "description": "Creates dated task folders in OneDrive projects with device name",
   "author": {
     "name": "Ariff",
-    "email": "contact@ariff.dev"
+    "email": "info@ariff.dev"
   },
   "type": "command"
 }

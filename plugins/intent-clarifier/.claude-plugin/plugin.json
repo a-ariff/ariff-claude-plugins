@@ -4,7 +4,7 @@
   "description": "Agent plugin for intent-clarifier",
   "author": {
     "name": "Ariff",
-    "email": "contact@ariff.dev"
+    "email": "info@ariff.dev"
   },
   "type": "agent"
 }
