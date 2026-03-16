@@ -41,17 +41,21 @@ Claude: *security-analyst agent handles everything autonomously*
 
 ## Quick Start
 
-**Prerequisites:** [Claude Code](https://claude.ai/code) installed and working.
+**Prerequisites:** [Claude Code](https://claude.ai/code) and [Git](https://git-scm.com) installed.
 
+**macOS / Linux:**
 ```bash
-# clone the marketplace
 git clone https://github.com/a-ariff/ariff-claude-plugins.git
-
-# install all 53 plugins
 cd ariff-claude-plugins && bash scripts/install.sh
 ```
 
-Done. All plugins are now available in your next Claude Code session.
+**Windows (PowerShell):**
+```powershell
+git clone https://github.com/a-ariff/ariff-claude-plugins.git
+cd ariff-claude-plugins; .\scripts\install.ps1
+```
+
+Done. Start a new Claude Code session and all 53 plugins are available.
 
 ---
 
@@ -112,12 +116,12 @@ Hooks run automatically at specific points during Claude's workflow. You don't i
 
 ## How to Install (Step by Step)
 
-This guide assumes you've never installed a Claude Code plugin before.
+This guide assumes you've never installed a Claude Code plugin before. Pick your platform below.
 
 ### Step 1: Make sure Claude Code is installed
 
-Open your terminal and run:
-```bash
+Open any terminal and run:
+```
 claude --version
 ```
 
@@ -125,25 +129,118 @@ If you see a version number (e.g., `2.1.76`), you're good. If not, install Claud
 
 ### Step 2: Clone this repository
 
-```bash
+```
 git clone https://github.com/a-ariff/ariff-claude-plugins.git
+cd ariff-claude-plugins
 ```
 
-This downloads the entire marketplace to your machine.
+### Step 3: Run the installer for your platform
 
-### Step 3: Run the installer
+<details>
+<summary><strong>macOS / Linux (Terminal, iTerm, Warp)</strong></summary>
 
 ```bash
-cd ariff-claude-plugins
 bash scripts/install.sh
 ```
+</details>
 
-The installer copies plugins to your `~/.claude/` directory where Claude Code can find them.
+<details>
+<summary><strong>Windows (PowerShell)</strong></summary>
+
+```powershell
+# Run from PowerShell (not CMD)
+cd ariff-claude-plugins
+
+# Create plugin directories
+$claudeDir = "$env:USERPROFILE\.claude"
+New-Item -ItemType Directory -Force -Path "$claudeDir\agents"
+New-Item -ItemType Directory -Force -Path "$claudeDir\skills"
+New-Item -ItemType Directory -Force -Path "$claudeDir\hooks"
+New-Item -ItemType Directory -Force -Path "$claudeDir\commands"
+New-Item -ItemType Directory -Force -Path "$claudeDir\scripts"
+
+# Copy all plugins
+Get-ChildItem plugins -Directory | ForEach-Object {
+    $plugin = $_
+    # Agents
+    if (Test-Path "$($plugin.FullName)\agents") {
+        Copy-Item "$($plugin.FullName)\agents\*.md" "$claudeDir\agents\" -Force
+    }
+    # Skills (directories)
+    if (Test-Path "$($plugin.FullName)\skills") {
+        Get-ChildItem "$($plugin.FullName)\skills" -Directory | ForEach-Object {
+            $dest = "$claudeDir\skills\$($_.Name)"
+            New-Item -ItemType Directory -Force -Path $dest | Out-Null
+            Copy-Item "$($_.FullName)\*" $dest -Force
+        }
+        # Skills (flat .md files)
+        Get-ChildItem "$($plugin.FullName)\skills\*.md" -ErrorAction SilentlyContinue | ForEach-Object {
+            $skillName = $_.BaseName -replace '\.skill$',''
+            $dest = "$claudeDir\skills\$skillName"
+            New-Item -ItemType Directory -Force -Path $dest | Out-Null
+            Copy-Item $_.FullName "$dest\SKILL.md" -Force
+        }
+    }
+    # Hooks
+    if (Test-Path "$($plugin.FullName)\hooks\hooks.json") {
+        Copy-Item "$($plugin.FullName)\hooks\hooks.json" "$claudeDir\hooks\$($plugin.Name)-hooks.json" -Force
+    }
+    # Commands
+    if (Test-Path "$($plugin.FullName)\commands") {
+        Copy-Item "$($plugin.FullName)\commands\*.md" "$claudeDir\commands\" -Force -ErrorAction SilentlyContinue
+    }
+    # Scripts
+    if (Test-Path "$($plugin.FullName)\scripts") {
+        Copy-Item "$($plugin.FullName)\scripts\*" "$claudeDir\scripts\" -Force -ErrorAction SilentlyContinue
+    }
+    Write-Host "  ok  $($plugin.Name)" -ForegroundColor Green
+}
+
+Write-Host "`nInstalled all plugins to $claudeDir" -ForegroundColor Cyan
+```
+</details>
+
+<details>
+<summary><strong>Windows (WSL / Git Bash)</strong></summary>
+
+```bash
+# If using WSL or Git Bash, the bash script works directly
+bash scripts/install.sh
+```
+</details>
+
+<details>
+<summary><strong>VS Code Terminal</strong></summary>
+
+Works with any terminal profile in VS Code:
+
+1. Open VS Code
+2. Open terminal: `Ctrl+`` ` (backtick) or `View > Terminal`
+3. Select your terminal profile (bash, PowerShell, or zsh)
+4. Run the commands for your platform above
+
+If your VS Code terminal is PowerShell, use the PowerShell instructions.
+If your VS Code terminal is bash/zsh, use the macOS/Linux instructions.
+</details>
+
+<details>
+<summary><strong>Windows Terminal</strong></summary>
+
+Windows Terminal supports multiple profiles. Pick the one that matches:
+
+**PowerShell tab:** Use the PowerShell instructions above.
+
+**Git Bash tab:** Use `bash scripts/install.sh`
+
+**WSL tab (Ubuntu/Debian):** Use `bash scripts/install.sh`
+
+**CMD tab:** Not recommended. Switch to PowerShell or Git Bash.
+</details>
 
 ### Step 4: Verify it worked
 
 Start a new Claude Code session:
-```bash
+```
 claude
 ```
 
@@ -154,54 +251,88 @@ Then type:
 
 You should see all 53 plugins listed. If you see them, installation is complete.
 
-### How it works (visual guide)
+### How it works
 
 ```
-                    YOUR MACHINE
-    +------------------------------------------+
-    |                                          |
-    |  ariff-claude-plugins/                   |
-    |  (downloaded repo)                       |
-    |       |                                  |
-    |       | install.sh copies to:            |
-    |       v                                  |
-    |  ~/.claude/                              |
-    |  |-- agents/     (22 agent files)        |
-    |  |-- skills/     (26 skill files)        |
-    |  |-- hooks/      (3 hook configs)        |
-    |  |-- commands/   (2 command files)        |
-    |       |                                  |
-    |       | Claude Code reads from ~/.claude |
-    |       v                                  |
-    |  Claude Code CLI                         |
-    |  (now has 53 plugins available)          |
-    |                                          |
-    +------------------------------------------+
+    You clone the repo          Install script copies          Claude Code
+    to your machine             components to ~/.claude/       reads them
+                                (or %USERPROFILE%\.claude\
+                                 on Windows)
+
+    ariff-claude-plugins/       ~/.claude/
+    |-- plugins/                |-- agents/     (22 files)
+    |   |-- architect/    -->   |-- skills/     (26 dirs)
+    |   |-- security/     -->   |-- hooks/      (3 configs)
+    |   |-- debugger/     -->   |-- commands/   (2 files)
+    |   |-- ...53 total         |-- scripts/    (hook scripts)
+    |                           |
+    |-- scripts/                Claude Code loads these
+    |   |-- install.sh          automatically on startup
+    |   |-- install.ps1
 ```
 
-### Alternative: Install a single plugin
+### Install a single plugin
 
 Don't want all 53? Install just what you need:
+
+**macOS / Linux:**
 ```bash
 bash scripts/install.sh --plugin architect
 bash scripts/install.sh --plugin security-analyst
-bash scripts/install.sh --plugin systematic-debugger
+```
+
+**Windows PowerShell** (single plugin):
+```powershell
+# Example: install just the architect agent
+$claudeDir = "$env:USERPROFILE\.claude\agents"
+New-Item -ItemType Directory -Force -Path $claudeDir | Out-Null
+Copy-Item plugins\architect\agents\*.md $claudeDir -Force
 ```
 
 ### Updating
 
 When new plugins are added:
+
+**macOS / Linux:**
 ```bash
 cd ariff-claude-plugins
 git pull origin main
 bash scripts/install.sh
 ```
 
+**Windows PowerShell:**
+```powershell
+cd ariff-claude-plugins
+git pull origin main
+# Re-run the PowerShell install block from Step 3
+```
+
 ### Uninstalling
 
+**macOS / Linux:**
 ```bash
 bash scripts/install.sh --uninstall
 ```
+
+**Windows PowerShell:**
+```powershell
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\agents"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\skills"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\hooks"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\commands"
+Remove-Item -Recurse -Force "$env:USERPROFILE\.claude\scripts"
+```
+
+### Troubleshooting
+
+| Problem | Solution |
+|---------|----------|
+| `claude: command not found` | Install Claude Code first from [claude.ai/code](https://claude.ai/code) |
+| `git: command not found` | Install Git from [git-scm.com](https://git-scm.com) |
+| Plugins don't show in `/browse` | Restart Claude Code (close and reopen) |
+| Permission denied on macOS | Run `chmod +x scripts/install.sh` first |
+| PowerShell execution policy | Run `Set-ExecutionPolicy -Scope CurrentUser RemoteSigned` |
+| WSL can't find ~/.claude | Make sure you're running Claude Code inside WSL, not Windows |
 
 ---
 
@@ -279,16 +410,72 @@ Hooks run automatically. No action needed from you.
 
 ### Plugin loading flow
 
+```mermaid
+flowchart TD
+    A["You start Claude Code"] --> B["Claude reads ~/.claude/"]
+    B --> C["agents/*.md"]
+    B --> D["skills/*/SKILL.md"]
+    B --> E["hooks/*.json"]
+    B --> F["commands/*.md"]
+
+    C --> G["Loaded on demand\nwhen task matches"]
+    D --> H["Descriptions loaded\nfull content on invoke"]
+    E --> I["Always active\nfires on matching events"]
+    F --> J["Available as\n/slash-commands"]
+
+    style A fill:#4CAF50,color:#fff
+    style B fill:#2196F3,color:#fff
+    style G fill:#FF9800,color:#fff
+    style H fill:#FF9800,color:#fff
+    style I fill:#f44336,color:#fff
+    style J fill:#9C27B0,color:#fff
 ```
-Session Start
-     |
-     v
-Claude Code reads ~/.claude/
-     |
-     +-- agents/*.md      -> loaded on demand when task matches
-     +-- skills/*/SKILL.md -> descriptions loaded, full content on invoke
-     +-- hooks/hooks.json  -> always active, fires on matching events
-     +-- commands/*.md     -> available as /slash-commands
+
+### Plugin distribution
+
+```mermaid
+pie title 53 Plugins by Category
+    "Agents (22)" : 22
+    "Skills (26)" : 26
+    "Hooks (3)" : 3
+    "Commands (2)" : 2
+```
+
+### Install flow
+
+```mermaid
+flowchart LR
+    A["git clone"] --> B["cd ariff-claude-plugins"]
+    B --> C{Your OS?}
+    C -->|macOS/Linux| D["bash scripts/install.sh"]
+    C -->|Windows| E[".\scripts\install.ps1"]
+    C -->|WSL| D
+    D --> F["~/.claude/"]
+    E --> G["%USERPROFILE%\.claude\"]
+    F --> H["53 plugins ready"]
+    G --> H
+
+    style A fill:#4CAF50,color:#fff
+    style H fill:#4CAF50,color:#fff
+    style C fill:#2196F3,color:#fff
+```
+
+### Agent workflow
+
+```mermaid
+sequenceDiagram
+    participant You
+    participant Claude
+    participant Agent
+
+    You->>Claude: "review this code for vulnerabilities"
+    Claude->>Claude: Selects security-analyst agent
+    Claude->>Agent: Delegates task
+    Agent->>Agent: Reads code files
+    Agent->>Agent: Checks OWASP patterns
+    Agent->>Agent: Analyzes attack surface
+    Agent->>Claude: Returns findings
+    Claude->>You: Structured security report
 ```
 
 ### Plugin structure
