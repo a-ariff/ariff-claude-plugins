@@ -203,7 +203,7 @@ await env.API_KEYS_KV.put(
 
 ## Contact Points
 - **Domain**: ariff.dev
-- **Email**: i@ariff.dev, security@ariff.dev
+- **Email**: contact@ariff.dev, security@ariff.dev
 - **GitHub**: @a-ariff
 - **Repository**: https://github.com/a-ariff/canvas-student-mcp-server
 
