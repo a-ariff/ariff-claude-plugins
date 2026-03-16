@@ -1,255 +1,220 @@
 # Plugin Structure Guide
 
-This document explains how Claude Code plugins are structured and how they work.
+How Claude Code plugins are built. Read this if you want to create your own.
 
-## Overview
+## Plugin directory layout
 
-Claude Code plugins extend Claude's capabilities through four mechanisms:
-
-| Type | Purpose | How Claude Uses It |
-|------|---------|-------------------|
-| **Agents** | Autonomous specialists | Delegates tasks via `@agent-name` |
-| **Skills** | Reusable capabilities | Applies techniques via skill reference |
-| **Hooks** | Event automation | Triggers on specific events |
-| **Commands** | Custom workflows | Executes via `/command-name` |
-
-## Directory Structure
+Every plugin follows this structure:
 
 ```
-plugins/
-└── your-plugin/
-    ├── manifest.json         # Required: Plugin metadata
-    ├── your-plugin.md        # Required: Main plugin content
-    ├── README.md             # Optional: Documentation
-    └── examples/             # Optional: Usage examples
-        └── example-1.md
+my-plugin/
+  .claude-plugin/
+    plugin.json              # required: manifest
+  agents/                    # agent markdown files
+    my-agent.md
+  skills/                    # skill directories or flat files
+    my-skill/
+      SKILL.md
+    or: my-skill.skill.md
+  hooks/
+    hooks.json               # hook event configuration
+  commands/                  # command markdown files
+    my-command.md
+  scripts/                   # shell scripts (used by hooks)
+    my-script.sh
 ```
 
-## Manifest Schema
+You only need the directories for the plugin types you're creating. An agent-only plugin just needs `.claude-plugin/` and `agents/`.
 
-### Required Fields
+## plugin.json (manifest)
+
+The only required file. Tells Claude Code about the plugin.
 
 ```json
 {
-  "name": "your-plugin",
+  "name": "my-plugin",
   "version": "1.0.0",
-  "description": "What this plugin does",
-  "category": "agents|skills|hooks|commands"
-}
-```
-
-### Optional Fields
-
-```json
-{
-  "tags": ["tag1", "tag2"],
+  "description": "What this plugin does (Claude reads this)",
   "author": {
     "name": "Your Name",
-    "github": "username"
+    "email": "you@example.com"
   },
-  "files": ["your-plugin.md"],
-  "dependencies": ["other-plugin"],
-  "claude_code_version": ">=1.0.0",
-  "triggers": ["pattern1", "pattern2"],
-  "events": ["pre-tool-call", "post-response"]
+  "type": "agent"
 }
 ```
 
-## Plugin Types
+| Field | Required | Description |
+|-------|----------|-------------|
+| name | Yes | Kebab-case identifier |
+| version | Yes | Semver (1.0.0) |
+| description | Yes | One-line description |
+| author | No | Name and email |
+| type | No | Primary type: agent, skill, hook, command |
 
-### Agents
+## Creating an agent
 
-Agents are autonomous specialists that handle specific domains.
-
-**File Structure:**
-```markdown
----
-name: architect-agent
-type: agent
-description: System design specialist
-triggers:
-  - "design"
-  - "architecture"
-  - "system design"
----
-
-# Architect Agent
-
-## Role
-I am a system design specialist...
-
-## Capabilities
-- Design distributed systems
-- Create architecture diagrams
-- Review technical decisions
-
-## Workflow
-1. Analyze requirements
-2. Identify constraints
-3. Propose architecture
-4. Document decisions
-
-## Tools I Use
-- Mermaid for diagrams
-- ADR format for decisions
+1. Create the directory:
+```
+my-agent/
+  .claude-plugin/
+    plugin.json
+  agents/
+    my-agent.md
 ```
 
-### Skills
-
-Skills are reusable techniques that enhance problem-solving.
-
-**File Structure:**
-```markdown
----
-name: systematic-debugging
-type: skill
-description: Methodical bug investigation
----
-
-# Systematic Debugging
-
-## Purpose
-A methodical approach to finding and fixing bugs.
-
-## The Technique
-
-### Step 1: Reproduce
-- Get exact reproduction steps
-- Note environment details
-- Capture error messages
-
-### Step 2: Isolate
-- Binary search the codebase
-- Eliminate possibilities
-- Find minimal reproduction
-
-### Step 3: Identify
-- Trace execution path
-- Inspect state at each step
-- Find the root cause
-
-### Step 4: Fix
-- Implement minimal fix
-- Add test coverage
-- Verify fix works
-
-## When to Use
-- Complex bugs
-- Intermittent failures
-- Production issues
-```
-
-### Hooks
-
-Hooks trigger automatically on specific events.
-
-**File Structure:**
-```markdown
----
-name: assumption-checker
-type: hook
-trigger: pre-tool-call
-events:
-  - tool_call
----
-
-# Assumption Checker Hook
-
-## Trigger Conditions
-Activates before any tool call.
-
-## Actions
-1. Check if assumptions are documented
-2. Verify prerequisites are met
-3. Warn if Canvas API is involved
-
-## Configuration
+2. Write plugin.json:
 ```json
 {
-  "strict_mode": true,
-  "canvas_warnings": true
+  "name": "my-agent",
+  "version": "1.0.0",
+  "description": "What this agent does and when to use it",
+  "author": { "name": "Your Name" },
+  "type": "agent"
 }
 ```
 
-## Example Output
-⚠️ WARNING: This action assumes the Canvas API is configured.
-Please verify before proceeding.
-```
-
-### Commands
-
-Commands are custom slash commands for workflows.
-
-**File Structure:**
+3. Write the agent markdown with frontmatter:
 ```markdown
 ---
-name: deep-search
-type: command
-trigger: /deep-search
+name: my-agent
+description: When to use this agent (Claude reads this to decide)
+model: sonnet
 ---
 
-# Deep Search Command
+# My Agent
+
+You are a specialized agent for [domain].
+
+## Your workflow
+1. First, analyze the request
+2. Then, gather information
+3. Finally, deliver results
+
+## What you're good at
+- Specific capability 1
+- Specific capability 2
+```
+
+## Creating a skill
+
+1. Create the directory:
+```
+my-skill/
+  .claude-plugin/
+    plugin.json
+  skills/
+    my-skill/
+      SKILL.md
+```
+
+2. Write SKILL.md with frontmatter:
+```markdown
+---
+name: my-skill
+description: What technique this teaches and when to use it
+---
+
+# My Skill
+
+## When to use this
+- Situation 1
+- Situation 2
+
+## The technique
+Step-by-step methodology...
+```
+
+## Creating a hook
+
+1. Create the directory:
+```
+my-hook/
+  .claude-plugin/
+    plugin.json
+  hooks/
+    hooks.json
+  scripts/
+    validate.sh
+```
+
+2. Write hooks.json:
+```json
+{
+  "PreToolUse": [
+    {
+      "matcher": "Bash",
+      "hooks": [
+        {
+          "type": "command",
+          "command": "${CLAUDE_PLUGIN_ROOT}/scripts/validate.sh",
+          "timeout": 10
+        }
+      ]
+    }
+  ]
+}
+```
+
+3. Write the script:
+```bash
+#!/bin/bash
+# Read event data from stdin
+EVENT=$(cat)
+
+# Your validation logic here
+echo '{"allow": true}'
+exit 0
+```
+
+## Creating a command
+
+1. Create the directory:
+```
+my-command/
+  .claude-plugin/
+    plugin.json
+  commands/
+    my-command.md
+```
+
+2. Write the command markdown:
+```markdown
+# My Command
 
 ## Usage
-```
-/deep-search <query> [--sources github,reddit,docs]
-```
+/my-command <arguments>
 
-## What It Does
-1. Searches GitHub for relevant code
-2. Searches Reddit for discussions
-3. Searches official documentation
-4. Combines and ranks results
-
-## Options
-- `--sources`: Comma-separated list of sources
-- `--limit`: Maximum results per source
-- `--recent`: Only results from last N days
-
-## Example
-```
-/deep-search "react server components" --sources github,docs --recent 30
-```
+## Instructions
+When this command is invoked, do the following:
+1. Step 1
+2. Step 2
+3. Step 3
 ```
 
-## Best Practices
+## Validating your plugin
 
-### Do's
-- ✅ Use relative paths
-- ✅ Include examples
-- ✅ Document edge cases
-- ✅ Version your plugins
-- ✅ Add meaningful tags
+```bash
+bash scripts/validate-plugin.sh plugins/my-plugin
+```
 
-### Don'ts
-- ❌ Hardcode user paths
-- ❌ Include API keys
-- ❌ Assume specific tools
-- ❌ Create circular dependencies
-- ❌ Use vague descriptions
+## Installing locally for testing
 
-## Testing Plugins
+macOS/Linux:
+```bash
+bash scripts/install.sh --plugin my-plugin
+```
 
-1. **Local Test**
-   ```bash
-   cp -r plugins/your-plugin ~/.claude/plugins/
-   ```
+Windows PowerShell:
+```powershell
+.\scripts\install.ps1 -Plugin my-plugin
+```
 
-2. **Validate Structure**
-   ```bash
-   bash scripts/validate-plugin.sh plugins/your-plugin
-   ```
+Then start a new Claude Code session and test.
 
-3. **Test in Session**
-   - Start new Claude Code session
-   - Try to use the plugin
-   - Verify expected behavior
+## Best practices
 
-## Troubleshooting
-
-| Issue | Solution |
-|-------|----------|
-| Plugin not loading | Check manifest.json syntax |
-| Wrong category | Verify category field matches content type |
-| Not triggered | Check trigger patterns in manifest |
-| File not found | Verify files field lists all required files |
+- Keep descriptions clear -- Claude uses them to decide when to use the plugin
+- One plugin per purpose -- don't bundle unrelated functionality
+- Test before sharing -- validate structure and test in a real session
+- No hardcoded paths -- use ${CLAUDE_PLUGIN_ROOT} for relative paths
+- No secrets -- never include API keys, tokens, or passwords

@@ -539,11 +539,18 @@ my-plugin/
 
 ## Documentation
 
-- [Plugin Structure Guide](./docs/PLUGIN_STRUCTURE.md) -- how plugins work internally
-- [Categories Guide](./docs/CATEGORIES.md) -- detailed breakdown of each category
-- [Contributing Guide](./CONTRIBUTING.md) -- how to create your own plugins
+### Guides (start here)
+- [Agents Guide](./docs/AGENTS.md) -- what agents are, all 22 agents with descriptions and examples
+- [Skills Guide](./docs/SKILLS.md) -- what skills are, all 26 skills with descriptions and examples
+- [Hooks Guide](./docs/HOOKS.md) -- what hooks are, all 22 supported events, how to create your own
+- [Commands Guide](./docs/COMMANDS.md) -- what commands are, all 2 commands with usage
+
+### Reference
+- [Categories Overview](./docs/CATEGORIES.md) -- quick comparison of all plugin types
+- [Plugin Structure](./docs/PLUGIN_STRUCTURE.md) -- how to build your own plugins
+- [Quick Start](./QUICKSTART.md) -- fast setup (one page)
 - [Changelog](./CHANGELOG.md) -- version history
-- [Quick Start](./QUICKSTART.md) -- fast setup guide
+- [Contributing](./CONTRIBUTING.md) -- how to contribute plugins
 - [Setup Verification](./SETUP-COMPLETE.md) -- troubleshooting
 
 ---
