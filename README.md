@@ -343,7 +343,7 @@ my-plugin/
 | Skills | 26 (49%) |
 | Hooks | 3 (5%) |
 | Commands | 2 (4%) |
-| Plugin component types | 7 (agents, skills, commands, hooks, MCP, LSP, output styles) |
+| Plugin component types | 6 (agents, skills, commands, hooks, MCP servers, LSP servers) |
 | Supported hook events | 22 |
 | Supported models | 3 (Opus 4.6, Sonnet 4.6, Haiku 4.5) |
 | Install time | < 30 seconds |

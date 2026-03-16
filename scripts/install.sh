@@ -11,138 +11,151 @@
 
 set -e
 
-# Colors for output
+# Colors
 RED='\033[0;31m'
 GREEN='\033[0;32m'
 YELLOW='\033[1;33m'
 BLUE='\033[0;34m'
-NC='\033[0m' # No Color
+NC='\033[0m'
 
-# Configuration
+# Paths
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 REPO_ROOT="$(dirname "$SCRIPT_DIR")"
-CLAUDE_DIR="$HOME/.claude"
 PLUGINS_SOURCE="$REPO_ROOT/plugins"
-
-# Detect OS
-detect_os() {
-    case "$(uname -s)" in
-        Darwin*) echo "macos" ;;
-        Linux*)  echo "linux" ;;
-        MINGW*|CYGWIN*|MSYS*) echo "windows" ;;
-        *) echo "unknown" ;;
-    esac
-}
-
-OS=$(detect_os)
+CLAUDE_DIR="$HOME/.claude"
+MARKETPLACE="$REPO_ROOT/.claude-plugin/marketplace.json"
 
 print_header() {
     echo -e "${BLUE}"
-    echo "╔══════════════════════════════════════════════════════════════╗"
-    echo "║     🔌 Ariff's Claude Code Plugin Installer                  ║"
-    echo "╚══════════════════════════════════════════════════════════════╝"
+    echo "============================================================"
+    echo "  Claude Code Plugin Installer"
+    echo "  53 plugins: 22 agents, 26 skills, 3 hooks, 2 commands"
+    echo "============================================================"
     echo -e "${NC}"
 }
 
-print_success() {
-    echo -e "${GREEN}✓${NC} $1"
-}
+print_success() { echo -e "${GREEN}  ok${NC}  $1"; }
+print_warning() { echo -e "${YELLOW}  !!${NC}  $1"; }
+print_error()   { echo -e "${RED}  xx${NC}  $1"; }
+print_info()    { echo -e "${BLUE}  --${NC}  $1"; }
 
-print_warning() {
-    echo -e "${YELLOW}⚠${NC} $1"
-}
-
-print_error() {
-    echo -e "${RED}✗${NC} $1"
-}
-
-print_info() {
-    echo -e "${BLUE}ℹ${NC} $1"
-}
-
-# Count plugins by category
-count_plugins() {
-    local category=$1
-    if [ -f "$REPO_ROOT/marketplace.json" ]; then
-        grep -c "\"category\": \"$category\"" "$REPO_ROOT/marketplace.json" 2>/dev/null || echo "0"
+# Detect what type a plugin is by looking at its directories
+detect_category() {
+    local plugin_dir="$1"
+    if [ -d "$plugin_dir/agents" ]; then
+        echo "agents"
+    elif [ -f "$plugin_dir/hooks/hooks.json" ]; then
+        echo "hooks"
+    elif [ -d "$plugin_dir/commands" ]; then
+        echo "commands"
+    elif [ -d "$plugin_dir/skills" ]; then
+        echo "skills"
     else
-        echo "0"
+        echo "plugins"
     fi
 }
 
 list_plugins() {
     echo ""
-    echo "Available Plugins:"
-    echo "=================="
+    echo "Available Plugins (53):"
     echo ""
-    
-    if [ -f "$REPO_ROOT/marketplace.json" ]; then
-        # Use jq if available, otherwise fallback to grep
-        if command -v jq &> /dev/null; then
-            echo "Agents:"
-            jq -r '.plugins[] | select(.category == "agents") | "  - \(.name): \(.description)"' "$REPO_ROOT/marketplace.json"
-            echo ""
-            echo "Skills:"
-            jq -r '.plugins[] | select(.category == "skills") | "  - \(.name): \(.description)"' "$REPO_ROOT/marketplace.json"
-            echo ""
-            echo "Hooks:"
-            jq -r '.plugins[] | select(.category == "hooks") | "  - \(.name): \(.description)"' "$REPO_ROOT/marketplace.json"
-            echo ""
-            echo "Commands:"
-            jq -r '.plugins[] | select(.category == "commands") | "  - \(.name): \(.description)"' "$REPO_ROOT/marketplace.json"
-        else
-            ls -1 "$PLUGINS_SOURCE" 2>/dev/null | while read plugin; do
-                echo "  - $plugin"
-            done
-        fi
-    else
-        ls -1 "$PLUGINS_SOURCE" 2>/dev/null | while read plugin; do
-            echo "  - $plugin"
+
+    for category in agents skills hooks commands; do
+        echo "  ${category}:"
+        for plugin_dir in "$PLUGINS_SOURCE"/*/; do
+            if [ -d "$plugin_dir" ]; then
+                local detected=$(detect_category "$plugin_dir")
+                if [ "$detected" = "$category" ]; then
+                    local name=$(basename "$plugin_dir")
+                    local desc=""
+                    local manifest="$plugin_dir/.claude-plugin/plugin.json"
+                    if [ -f "$manifest" ]; then
+                        desc=$(python3 -c "import json; print(json.load(open('$manifest')).get('description',''))" 2>/dev/null || echo "")
+                    fi
+                    if [ -n "$desc" ]; then
+                        echo "    $name -- $desc"
+                    else
+                        echo "    $name"
+                    fi
+                fi
+            fi
         done
-    fi
-    echo ""
+        echo ""
+    done
 }
 
 install_plugin() {
-    local plugin_name=$1
+    local plugin_name="$1"
     local source_dir="$PLUGINS_SOURCE/$plugin_name"
-    
+
     if [ ! -d "$source_dir" ]; then
         print_error "Plugin not found: $plugin_name"
         return 1
     fi
-    
-    # Read manifest to determine category
-    local manifest="$source_dir/manifest.json"
-    local category="plugins"
-    
-    if [ -f "$manifest" ] && command -v jq &> /dev/null; then
-        category=$(jq -r '.category // "plugins"' "$manifest")
+
+    local category=$(detect_category "$source_dir")
+
+    # Copy agent markdown files
+    if [ -d "$source_dir/agents" ]; then
+        mkdir -p "$CLAUDE_DIR/agents"
+        cp "$source_dir"/agents/*.md "$CLAUDE_DIR/agents/" 2>/dev/null || true
     fi
-    
-    # Determine target directory
-    local target_dir="$CLAUDE_DIR/$category"
-    mkdir -p "$target_dir"
-    
-    # Copy plugin files
-    cp -r "$source_dir"/* "$target_dir/" 2>/dev/null || cp -r "$source_dir" "$target_dir/"
-    
-    print_success "Installed: $plugin_name → ~/.claude/$category/"
+
+    # Copy skill directories
+    if [ -d "$source_dir/skills" ]; then
+        mkdir -p "$CLAUDE_DIR/skills"
+        for skill_dir in "$source_dir"/skills/*/; do
+            if [ -d "$skill_dir" ]; then
+                local skill_name=$(basename "$skill_dir")
+                mkdir -p "$CLAUDE_DIR/skills/$skill_name"
+                cp "$skill_dir"/* "$CLAUDE_DIR/skills/$skill_name/" 2>/dev/null || true
+            fi
+        done
+        # Also copy flat skill files (skill.md pattern)
+        for skill_file in "$source_dir"/skills/*.md; do
+            if [ -f "$skill_file" ]; then
+                local skill_base=$(basename "$skill_file" .md)
+                skill_base=$(basename "$skill_base" .skill)
+                mkdir -p "$CLAUDE_DIR/skills/$skill_base"
+                cp "$skill_file" "$CLAUDE_DIR/skills/$skill_base/SKILL.md" 2>/dev/null || true
+            fi
+        done
+    fi
+
+    # Copy hooks
+    if [ -f "$source_dir/hooks/hooks.json" ]; then
+        mkdir -p "$CLAUDE_DIR/hooks"
+        cp "$source_dir/hooks/hooks.json" "$CLAUDE_DIR/hooks/${plugin_name}-hooks.json" 2>/dev/null || true
+    fi
+
+    # Copy commands
+    if [ -d "$source_dir/commands" ]; then
+        mkdir -p "$CLAUDE_DIR/commands"
+        cp "$source_dir"/commands/*.md "$CLAUDE_DIR/commands/" 2>/dev/null || true
+    fi
+
+    # Copy scripts (needed by hooks)
+    if [ -d "$source_dir/scripts" ]; then
+        mkdir -p "$CLAUDE_DIR/scripts"
+        cp "$source_dir"/scripts/* "$CLAUDE_DIR/scripts/" 2>/dev/null || true
+        chmod +x "$CLAUDE_DIR/scripts/"* 2>/dev/null || true
+    fi
+
+    print_success "$plugin_name ($category)"
 }
 
 install_all() {
-    print_info "Installing all plugins..."
+    print_info "Installing all plugins to ~/.claude/ ..."
     echo ""
-    
-    # Create directories
-    mkdir -p "$CLAUDE_DIR"/{agents,skills,hooks,commands,plugins}
-    
+
+    mkdir -p "$CLAUDE_DIR"/{agents,skills,hooks,commands,scripts}
+
     local count=0
     local failed=0
-    
+
     for plugin_dir in "$PLUGINS_SOURCE"/*/; do
         if [ -d "$plugin_dir" ]; then
-            plugin_name=$(basename "$plugin_dir")
+            local plugin_name=$(basename "$plugin_dir")
             if install_plugin "$plugin_name"; then
                 ((count++))
             else
@@ -150,26 +163,31 @@ install_all() {
             fi
         fi
     done
-    
+
     echo ""
-    print_success "Installation complete!"
-    echo "  Installed: $count plugins"
-    [ $failed -gt 0 ] && echo "  Failed: $failed plugins"
+    echo "============================================================"
+    print_success "Installed $count plugins to ~/.claude/"
+    [ $failed -gt 0 ] && print_warning "Failed: $failed plugins"
     echo ""
-    echo "Restart Claude Code to use your new plugins."
+    echo "  Next steps:"
+    echo "    1. Start a new Claude Code session: claude"
+    echo "    2. Type /browse to see all available plugins"
+    echo "    3. Try: 'run a security review on my code'"
+    echo ""
 }
 
 uninstall_all() {
-    print_warning "This will remove all plugins from ~/.claude/"
-    read -p "Continue? (y/N) " confirm
-    
+    print_warning "This will remove all installed plugins from ~/.claude/"
+    echo ""
+    read -p "  Continue? (y/N) " confirm
+
     if [[ "$confirm" =~ ^[Yy]$ ]]; then
         rm -rf "$CLAUDE_DIR/agents"
-        rm -rf "$CLAUDE_DIR/skills"  
+        rm -rf "$CLAUDE_DIR/skills"
         rm -rf "$CLAUDE_DIR/hooks"
         rm -rf "$CLAUDE_DIR/commands"
-        rm -rf "$CLAUDE_DIR/plugins"
-        print_success "All plugins removed"
+        rm -rf "$CLAUDE_DIR/scripts"
+        print_success "All plugins removed from ~/.claude/"
     else
         print_info "Cancelled"
     fi
@@ -185,7 +203,8 @@ case "${1:-}" in
     --plugin|-p)
         if [ -z "${2:-}" ]; then
             print_error "Please specify a plugin name"
-            echo "Usage: $0 --plugin PLUGIN_NAME"
+            echo "  Usage: $0 --plugin PLUGIN_NAME"
+            echo "  Example: $0 --plugin security-analyst"
             exit 1
         fi
         install_plugin "$2"
@@ -197,12 +216,16 @@ case "${1:-}" in
         echo "Usage: $0 [OPTIONS]"
         echo ""
         echo "Options:"
-        echo "  --list, -l              List available plugins"
-        echo "  --plugin, -p NAME       Install specific plugin"
-        echo "  --uninstall, -u         Remove all plugins"
-        echo "  --help, -h              Show this help"
+        echo "  (no options)              Install all 53 plugins"
+        echo "  --list, -l                List available plugins"
+        echo "  --plugin, -p NAME         Install a single plugin"
+        echo "  --uninstall, -u           Remove all installed plugins"
+        echo "  --help, -h                Show this help"
         echo ""
-        echo "Without options, installs all plugins."
+        echo "Examples:"
+        echo "  bash install.sh                          # install everything"
+        echo "  bash install.sh --plugin architect       # install one plugin"
+        echo "  bash install.sh --list                   # see what's available"
         ;;
     *)
         install_all
