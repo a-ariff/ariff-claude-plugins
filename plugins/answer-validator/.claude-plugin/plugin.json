@@ -1,0 +1,10 @@
+{
+  "name": "answer-validator",
+  "version": "1.0.0",
+  "description": "Automatic hook that validates tool outputs match the claims Claude makes about them, catches misquoted code and wrong file references",
+  "author": {
+    "name": "Ariff",
+    "email": "info@ariff.dev"
+  },
+  "type": "hook"
+}

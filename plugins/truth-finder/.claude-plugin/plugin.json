@@ -1,0 +1,10 @@
+{
+  "name": "truth-finder",
+  "version": "1.0.0",
+  "description": "Agent that cross-references claims against the actual codebase, documentation, and git history before accepting them as true",
+  "author": {
+    "name": "Ariff",
+    "email": "info@ariff.dev"
+  },
+  "type": "agent"
+}

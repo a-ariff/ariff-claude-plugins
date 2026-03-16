@@ -1,0 +1,10 @@
+{
+  "name": "hallucination-guard",
+  "version": "1.0.0",
+  "description": "Automatic hook that scans Claude responses for speculative language, unverified claims, and hallucination patterns before delivery",
+  "author": {
+    "name": "Ariff",
+    "email": "info@ariff.dev"
+  },
+  "type": "hook"
+}

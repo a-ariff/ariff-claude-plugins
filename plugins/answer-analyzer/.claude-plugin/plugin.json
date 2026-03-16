@@ -1,0 +1,10 @@
+{
+  "name": "answer-analyzer",
+  "version": "1.0.0",
+  "description": "Agent that reviews Claude's own response for accuracy, completeness, and unsupported claims before the user sees it",
+  "author": {
+    "name": "Ariff",
+    "email": "info@ariff.dev"
+  },
+  "type": "agent"
+}

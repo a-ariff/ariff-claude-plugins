@@ -1,0 +1,10 @@
+{
+  "name": "cross-checker",
+  "version": "1.0.0",
+  "description": "Skill that verifies every claim from multiple independent angles -- code, docs, tests, git history -- before accepting it as fact",
+  "author": {
+    "name": "Ariff",
+    "email": "info@ariff.dev"
+  },
+  "type": "skill"
+}

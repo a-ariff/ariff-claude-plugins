@@ -1,0 +1,14 @@
+{
+  "Stop": [
+    {
+      "matcher": "*",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "Review the response you just generated. Check for: 1) Claims about code that you did not verify by reading the actual file. 2) Statements like 'this should work', 'probably', 'likely', 'I believe' without evidence. 3) File paths, function names, or variable names you assumed but did not confirm. 4) Version numbers or API details from memory rather than documentation. If you find any unverified claims, add a warning at the end: 'Note: The following claims were not verified against the actual codebase: [list them]'. If all claims are verified, respond with ok.",
+          "model": "haiku"
+        }
+      ]
+    }
+  ]
+}

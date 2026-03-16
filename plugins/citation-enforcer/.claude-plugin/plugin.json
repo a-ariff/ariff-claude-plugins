@@ -1,0 +1,10 @@
+{
+  "name": "citation-enforcer",
+  "version": "1.0.0",
+  "description": "---",
+  "author": {
+    "name": "Ariff",
+    "email": "info@ariff.dev"
+  },
+  "type": "skill"
+}

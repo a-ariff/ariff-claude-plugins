@@ -1,0 +1,10 @@
+{
+  "name": "source-verifier",
+  "version": "1.0.0",
+  "description": "Skill that ensures every factual claim in a response is backed by verifiable evidence from the codebase, documentation, or external sources",
+  "author": {
+    "name": "Ariff",
+    "email": "info@ariff.dev"
+  },
+  "type": "skill"
+}

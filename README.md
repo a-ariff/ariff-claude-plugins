@@ -2,14 +2,14 @@
 
 <div align="center">
 
-[![Plugins](https://img.shields.io/badge/plugins-53-blue?style=for-the-badge)](./marketplace.json)
-[![Agents](https://img.shields.io/badge/agents-22-green?style=for-the-badge)](./plugins)
-[![Skills](https://img.shields.io/badge/skills-26-orange?style=for-the-badge)](./plugins)
-[![Hooks](https://img.shields.io/badge/hooks-3-red?style=for-the-badge)](./plugins)
+[![Plugins](https://img.shields.io/badge/plugins-65-blue?style=for-the-badge)](./marketplace.json)
+[![Agents](https://img.shields.io/badge/agents-24-green?style=for-the-badge)](./plugins)
+[![Skills](https://img.shields.io/badge/skills-34-orange?style=for-the-badge)](./plugins)
+[![Hooks](https://img.shields.io/badge/hooks-5-red?style=for-the-badge)](./plugins)
 [![License](https://img.shields.io/badge/license-MIT-purple?style=for-the-badge)](./LICENSE)
 [![Stars](https://img.shields.io/github/stars/a-ariff/ariff-claude-plugins?style=for-the-badge)](https://github.com/a-ariff/ariff-claude-plugins/stargazers)
 
-**53 production-ready plugins for Claude Code -- autonomous agents, power skills, smart hooks, and custom commands**
+**65 production-ready plugins for Claude Code -- autonomous agents, power skills, anti-hallucination suite, smart hooks, and custom commands**
 
 Compatible with Claude Opus 4.6, Sonnet 4.6, and Haiku 4.5
 
@@ -55,21 +55,23 @@ git clone https://github.com/a-ariff/ariff-claude-plugins.git
 cd ariff-claude-plugins; .\scripts\install.ps1
 ```
 
-Done. Start a new Claude Code session and all 53 plugins are available.
+Done. Start a new Claude Code session and all 65 plugins are available.
 
 ---
 
 ## What's Inside
 
-### 53 Plugins in 4 Categories
+### 65 Plugins in 4 Categories
 
 ```
 ariff-claude-plugins/
 |
-|-- 22 Agents      autonomous workers that handle entire tasks
-|-- 26 Skills      methodologies and knowledge you can apply on demand
-|--  3 Hooks       automatic safeguards that run without you asking
+|-- 24 Agents      autonomous workers that handle entire tasks
+|-- 34 Skills      methodologies and knowledge you can apply on demand
+|--  5 Hooks       automatic safeguards that run without you asking
 |--  2 Commands    slash commands for common workflows
+|
+|-- includes 12-plugin Anti-Hallucination Suite
 ```
 
 ### Agents (22) -- delegate entire tasks
@@ -104,6 +106,27 @@ Hooks run automatically at specific points during Claude's workflow. You don't i
 | assumption-checker | PreToolUse | Warns when Claude makes assumptions instead of checking |
 | memory-sync | Stop | Prompts to save learnings at session end |
 | hooks-reference | PreToolUse | Reference implementation for building your own hooks |
+
+### Anti-Hallucination Suite (12 plugins) -- stop AI from guessing
+
+A complete system to prevent Claude from making things up. Hooks catch problems automatically, agents cross-verify claims, and skills teach verification methodology.
+
+**Why this matters:** AI can confidently state things that aren't true -- wrong file paths, invented function names, assumed behavior. These plugins catch that before it reaches you.
+
+| Plugin | Type | What it does |
+|--------|------|-------------|
+| hallucination-guard | Hook | Scans every response for speculative language and unverified claims |
+| answer-validator | Hook | Checks that tool outputs match the claims Claude makes about them |
+| truth-finder | Agent | Cross-references claims against actual code, docs, and git history |
+| answer-analyzer | Agent | Reviews Claude's own response for accuracy before delivery |
+| anti-hallucination | Skill | Complete methodology: verify before claiming, cite before asserting |
+| cross-checker | Skill | Verify from multiple angles: code, tests, git, docs, config |
+| source-verifier | Skill | Every claim must have a file:line citation or be flagged |
+| confidence-scorer | Skill | Assigns 0-100 confidence score to each claim |
+| citation-enforcer | Skill | Forces file:line references for every code claim |
+| uncertainty-detector | Skill | Catches when Claude is guessing but sounding certain |
+| output-auditor | Skill | 4-angle review: accuracy, logic, completeness, safety |
+| context-grounding | Skill | Forces reading actual code before making claims about it |
 
 ### Commands (2) -- slash commands
 
@@ -249,7 +272,7 @@ Then type:
 /browse
 ```
 
-You should see all 53 plugins listed. If you see them, installation is complete.
+You should see all 65 plugins listed. If you see them, installation is complete.
 
 ### How it works
 
@@ -273,7 +296,7 @@ You should see all 53 plugins listed. If you see them, installation is complete.
 
 ### Install a single plugin
 
-Don't want all 53? Install just what you need:
+Don't want all 65? Install just what you need:
 
 **macOS / Linux:**
 ```bash
@@ -434,10 +457,10 @@ flowchart TD
 ### Plugin distribution
 
 ```mermaid
-pie title 53 Plugins by Category
-    "Agents (22)" : 22
-    "Skills (26)" : 26
-    "Hooks (3)" : 3
+pie title 65 Plugins by Category
+    "Agents (24)" : 24
+    "Skills (34)" : 34
+    "Hooks (5)" : 5
     "Commands (2)" : 2
 ```
 
@@ -452,7 +475,7 @@ flowchart LR
     C -->|WSL| D
     D --> F["~/.claude/"]
     E --> G["%USERPROFILE%\.claude\"]
-    F --> H["53 plugins ready"]
+    F --> H["65 plugins ready"]
     G --> H
 
     style A fill:#4CAF50,color:#fff
@@ -525,11 +548,12 @@ my-plugin/
 
 | Metric | Count |
 |--------|-------|
-| Total plugins | 53 |
-| Agents | 22 (42%) |
-| Skills | 26 (49%) |
-| Hooks | 3 (5%) |
-| Commands | 2 (4%) |
+| Total plugins | 65 |
+| Agents | 24 (37%) |
+| Skills | 34 (52%) |
+| Hooks | 5 (8%) |
+| Commands | 2 (3%) |
+| Anti-hallucination suite | 12 (included in counts above) |
 | Plugin component types | 6 (agents, skills, commands, hooks, MCP servers, LSP servers) |
 | Supported hook events | 22 |
 | Supported models | 3 (Opus 4.6, Sonnet 4.6, Haiku 4.5) |
@@ -540,8 +564,8 @@ my-plugin/
 ## Documentation
 
 ### Guides (start here)
-- [Agents Guide](./docs/AGENTS.md) -- what agents are, all 22 agents with descriptions and examples
-- [Skills Guide](./docs/SKILLS.md) -- what skills are, all 26 skills with descriptions and examples
+- [Agents Guide](./docs/AGENTS.md) -- what agents are, all 24 agents with descriptions and examples
+- [Skills Guide](./docs/SKILLS.md) -- what skills are, all 34 skills with descriptions and examples
 - [Hooks Guide](./docs/HOOKS.md) -- what hooks are, all 22 supported events, how to create your own
 - [Commands Guide](./docs/COMMANDS.md) -- what commands are, all 2 commands with usage
 
@@ -593,9 +617,9 @@ Contributions welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 | Feature | This marketplace | Typical repos |
 |---------|-----------------|---------------|
-| Production-tested | Yes, 53 plugins | 5-10 experimental plugins |
+| Production-tested | Yes, 65 plugins | 5-10 experimental plugins |
 | Documentation | Full guides, visual diagrams, examples | Basic README |
-| Safety layer | 7 checker agents + 3 hooks | None |
+| Safety layer | 7 checker agents + 5 hooks | None |
 | Model support | Opus 4.6, Sonnet 4.6, Haiku 4.5 | Single model |
 | One-line install | `bash scripts/install.sh` | Manual file copying |
 | Cross-device sync | Git-based, works with any cloud storage | Not supported |

@@ -1,6 +1,6 @@
 # Quick Start
 
-Get all 53 plugins running in under a minute.
+Get all 65 plugins running in under a minute.
 
 ## macOS / Linux
 
@@ -32,7 +32,7 @@ bash scripts/install.sh
 claude
 ```
 
-Then type `/browse` -- you should see all 53 plugins.
+Then type `/browse` -- you should see all 65 plugins.
 
 ## Install a single plugin
 

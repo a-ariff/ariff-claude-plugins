@@ -1,0 +1,10 @@
+{
+  "name": "anti-hallucination",
+  "version": "1.0.0",
+  "description": "Methodology skill that teaches Claude to verify before claiming, cite before asserting, and admit uncertainty instead of guessing",
+  "author": {
+    "name": "Ariff",
+    "email": "info@ariff.dev"
+  },
+  "type": "skill"
+}

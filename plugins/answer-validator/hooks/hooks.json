@@ -1,0 +1,24 @@
+{
+  "PostToolUse": [
+    {
+      "matcher": "Read",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "A file was just read. Before continuing, verify: 1) Does your response accurately quote the file content, or are you paraphrasing from memory? 2) Are the line numbers you reference correct? 3) Are function/variable names exactly as they appear in the file? If you notice any mismatch between the actual file content and what you were about to say, correct it now. Respond with ok if accurate.",
+          "model": "haiku"
+        }
+      ]
+    },
+    {
+      "matcher": "Grep",
+      "hooks": [
+        {
+          "type": "prompt",
+          "prompt": "Search results were just returned. Verify: 1) Are you only citing files that actually appeared in the results? 2) Are you quoting the actual matched lines, not inventing context around them? 3) If the search returned no results, are you acknowledging that instead of guessing? Respond with ok if accurate.",
+          "model": "haiku"
+        }
+      ]
+    }
+  ]
+}
