@@ -1,98 +1,77 @@
-# 🚀 Quickstart Guide
+# Quick Start
 
-Complete these steps to publish your marketplace:
+Get all 53 plugins running in under a minute.
 
-## Step 1: Copy Plugins (1 minute)
-
-Run the migration script to copy all 41 plugins:
+## macOS / Linux
 
 ```bash
-cd /Users/ariff/Library/CloudStorage/OneDrive-Independent/dev-terminal/ariff-claude-plugins
-chmod +x scripts/*.sh
-bash scripts/migrate-from-config.sh
+git clone https://github.com/a-ariff/ariff-claude-plugins.git
+cd ariff-claude-plugins
+bash scripts/install.sh
 ```
 
-## Step 2: Create GitHub Repository
+## Windows (PowerShell)
 
-1. Go to [github.com/new](https://github.com/new)
-2. Repository name: `ariff-claude-plugins`
-3. Description: `🔌 Claude Code Plugin Marketplace - 41 production-ready agents, skills, hooks, and commands`
-4. Visibility: **Public** ✓
-5. Do NOT initialize with README (we already have one)
-6. Click **Create repository**
-
-## Step 3: Push to GitHub
-
-```bash
-cd /Users/ariff/Library/CloudStorage/OneDrive-Independent/dev-terminal/ariff-claude-plugins
-
-# Initialize git
-git init
-git add .
-git commit -m "initial commit: 41 claude code plugins"
-
-# Connect to GitHub
-git remote add origin https://github.com/a-ariff/ariff-claude-plugins.git
-git branch -M main
-git push -u origin main
+```powershell
+git clone https://github.com/a-ariff/ariff-claude-plugins.git
+cd ariff-claude-plugins
+.\scripts\install.ps1
 ```
 
-## Step 4: Setup Repository Link
-
-Link your private config to pull from marketplace:
+## Windows (WSL / Git Bash)
 
 ```bash
-bash scripts/setup-repo-link.sh
+git clone https://github.com/a-ariff/ariff-claude-plugins.git
+cd ariff-claude-plugins
+bash scripts/install.sh
 ```
 
 ## Verify
 
-Your marketplace is live at:
-- **Repository**: https://github.com/a-ariff/ariff-claude-plugins
-- **Install**: `git clone https://github.com/a-ariff/ariff-claude-plugins.git && cd ariff-claude-plugins && bash scripts/install.sh`
-
-## 3-Repo Architecture Complete!
-
 ```
-┌─────────────────────────────────────────────────────────────────┐
-│                     Your Repository Setup                        │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                  │
-│  ┌──────────────────────┐     ┌──────────────────────┐          │
-│  │ ariff-claude-plugins │     │  Ariff-code-config   │          │
-│  │      (PUBLIC)        │────▶│     (PRIVATE)        │          │
-│  │  41 shareable plugins│     │  Personal settings   │          │
-│  └──────────────────────┘     └──────────────────────┘          │
-│           │                            │                         │
-│           │                            │                         │
-│           ▼                            ▼                         │
-│  ┌──────────────────────────────────────────────────┐           │
-│  │              ~/.claude/ (installed)               │           │
-│  │  • agents/   • skills/   • hooks/   • commands/  │           │
-│  └──────────────────────────────────────────────────┘           │
-│                                                                  │
-└─────────────────────────────────────────────────────────────────┘
+claude
 ```
 
-## What Each Repo Contains
+Then type `/browse` -- you should see all 53 plugins.
 
-| Repo | Visibility | Contents |
-|------|------------|----------|
-| **ariff-claude-plugins** | Public | 41 plugins, docs, install script |
-| **Ariff-code-config** | Private | MCP configs, credentials, personal settings |
+## Install a single plugin
 
-## Cross-Device Sync
+```bash
+# macOS / Linux
+bash scripts/install.sh --plugin architect
 
-Both repos sync via OneDrive:
-```
-OneDrive/dev-terminal/
-├── ariff-claude-plugins/    # Public marketplace
-└── Ariff-code-config/       # Private config
+# Windows PowerShell
+.\scripts\install.ps1 -Plugin architect
 ```
 
-## Next Steps
+## Uninstall
 
-1. ✅ Marketplace created
-2. ⬜ Share on social media
-3. ⬜ Add to awesome-claude-code lists
-4. ⬜ Accept community contributions
+```bash
+# macOS / Linux
+bash scripts/install.sh --uninstall
+
+# Windows PowerShell
+.\scripts\install.ps1 -Uninstall
+```
+
+## What you get
+
+```
+~/.claude/                    (macOS/Linux)
+%USERPROFILE%\.claude\        (Windows)
+
+  agents/      22 autonomous agents
+  skills/      26 methodology skills
+  hooks/        3 automatic safeguards
+  commands/     2 slash commands
+  scripts/      hook support scripts
+```
+
+## Need more details?
+
+See the full [README](./README.md) for:
+
+- Step-by-step guide for every platform
+- How each plugin type works
+- Usage examples
+- Troubleshooting
