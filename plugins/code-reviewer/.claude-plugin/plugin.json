@@ -1,6 +1,11 @@
 {
   "name": "code-reviewer",
   "version": "1.0.0",
+  "description": "name: code-reviewer",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  },
   "type": "skill",
   "skills": [
     "skills/code-reviewer.skill.md"

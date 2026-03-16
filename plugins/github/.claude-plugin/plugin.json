@@ -1,6 +1,11 @@
 {
   "name": "github",
   "version": "1.0.0",
+  "description": "name: github",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  },
   "type": "skill",
   "skills": [
     "skills/github.skill.md"

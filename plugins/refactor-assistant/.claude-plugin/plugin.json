@@ -1,6 +1,11 @@
 {
   "name": "refactor-assistant",
   "version": "1.0.0",
+  "description": "name: refactor-assistant",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  },
   "type": "skill",
   "skills": [
     "skills/refactor-assistant.skill.md"

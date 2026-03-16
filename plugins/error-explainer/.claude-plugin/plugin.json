@@ -1,6 +1,11 @@
 {
   "name": "error-explainer",
   "version": "1.0.0",
+  "description": "name: error-explainer",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  },
   "type": "skill",
   "skills": [
     "skills/error-explainer.skill.md"

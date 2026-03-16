@@ -1,6 +1,11 @@
 {
   "name": "api-docs-generator",
   "version": "1.0.0",
+  "description": "name: api-docs-generator",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  },
   "type": "skill",
   "skills": [
     "skills/api-docs-generator.skill.md"

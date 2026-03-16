@@ -1,6 +1,11 @@
 {
   "name": "systematic-debugger",
   "version": "1.0.0",
+  "description": "name: systematic-debugger",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  },
   "type": "skill",
   "skills": [
     "skills/systematic-debugger.skill.md"

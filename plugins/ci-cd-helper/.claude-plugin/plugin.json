@@ -1,6 +1,11 @@
 {
   "name": "ci-cd-helper",
   "version": "1.0.0",
+  "description": "name: ci-cd-helper",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  },
   "type": "skill",
   "skills": [
     "skills/ci-cd-helper.skill.md"

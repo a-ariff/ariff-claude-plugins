@@ -1,6 +1,11 @@
 {
   "name": "performance-optimizer",
   "version": "1.0.0",
+  "description": "name: performance-optimizer",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  },
   "type": "skill",
   "skills": [
     "skills/performance-optimizer.skill.md"

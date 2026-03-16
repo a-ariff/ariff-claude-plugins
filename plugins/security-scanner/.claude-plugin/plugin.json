@@ -1,6 +1,11 @@
 {
   "name": "security-scanner",
   "version": "1.0.0",
+  "description": "name: security-scanner",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  },
   "type": "skill",
   "skills": [
     "skills/security-scanner.skill.md"

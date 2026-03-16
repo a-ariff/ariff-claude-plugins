@@ -1,6 +1,11 @@
 {
   "name": "tdd-workflow",
   "version": "1.0.0",
+  "description": "name: tdd-workflow",
+  "author": {
+    "name": "Ariff",
+    "email": "i@ariff.dev"
+  },
   "type": "skill",
   "skills": [
     "skills/tdd-workflow.skill.md"
