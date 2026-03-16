@@ -1,459 +1,426 @@
-# 🔌 Claude Code Plugin Marketplace
+# Claude Code Plugin Marketplace
 
 <div align="center">
 
-[![Plugins](https://img.shields.io/badge/plugins-41-blue?style=for-the-badge)](./marketplace.json)
-[![Agents](https://img.shields.io/badge/agents-21-green?style=for-the-badge)](./plugins)
-[![Skills](https://img.shields.io/badge/skills-15-orange?style=for-the-badge)](./plugins)
+[![Plugins](https://img.shields.io/badge/plugins-53-blue?style=for-the-badge)](./marketplace.json)
+[![Agents](https://img.shields.io/badge/agents-22-green?style=for-the-badge)](./plugins)
+[![Skills](https://img.shields.io/badge/skills-26-orange?style=for-the-badge)](./plugins)
+[![Hooks](https://img.shields.io/badge/hooks-3-red?style=for-the-badge)](./plugins)
 [![License](https://img.shields.io/badge/license-MIT-purple?style=for-the-badge)](./LICENSE)
 [![Stars](https://img.shields.io/github/stars/a-ariff/ariff-claude-plugins?style=for-the-badge)](https://github.com/a-ariff/ariff-claude-plugins/stargazers)
 
-**Production-ready plugins that supercharge Claude Code with autonomous agents, powerful skills, smart hooks, and custom commands**
+**53 production-ready plugins for Claude Code -- autonomous agents, power skills, smart hooks, and custom commands**
 
-[Quick Start](#-quick-start) • [Features](#-features) • [Documentation](#-documentation) • [Install](#-installation) • [Contributing](#-contributing)
+Compatible with Claude Opus 4.6, Sonnet 4.6, and Haiku 4.5
+
+[Quick Start](#quick-start) | [What's Inside](#whats-inside) | [How to Install](#how-to-install-step-by-step) | [Usage Guide](#usage-guide) | [Documentation](#documentation) | [Contributing](#contributing)
 
 </div>
 
 ---
 
-## 🎯 Why This Marketplace?
+## What is this?
 
-Transform Claude Code from a powerful assistant into an **autonomous development powerhouse**:
+Claude Code is Anthropic's CLI tool for coding with AI. **Plugins** extend what Claude Code can do by adding specialized agents, skills, and automation hooks.
 
-- **🤖 21 Specialized Agents** - Delegate complex tasks to expert agents
-- **⚡ 15 Power Skills** - Apply proven methodologies instantly
-- **🛡️ Smart Safety Hooks** - Prevent mistakes before they happen
-- **📋 Workflow Commands** - Automate repetitive tasks
-- **🔄 Cross-Device Sync** - Same setup on all your machines
-- **📦 One-Line Install** - Up and running in 30 seconds
+This marketplace gives you **53 ready-to-use plugins** that turn Claude Code into an autonomous development powerhouse. Instead of telling Claude what to do step by step, you delegate entire tasks to specialized agents that know exactly how to handle them.
 
-## ⚡ Quick Start
+**Before plugins:**
+```
+You: "Read the auth module, check for SQL injection, review the error handling,
+     look at the input validation, check the session management..."
+```
+
+**After plugins:**
+```
+You: "Run a security review on the auth module"
+Claude: *security-analyst agent handles everything autonomously*
+```
+
+---
+
+## Quick Start
+
+**Prerequisites:** [Claude Code](https://claude.ai/code) installed and working.
 
 ```bash
-git clone https://github.com/a-ariff/ariff-claude-plugins.git && \
+# clone the marketplace
+git clone https://github.com/a-ariff/ariff-claude-plugins.git
+
+# install all 53 plugins
 cd ariff-claude-plugins && bash scripts/install.sh
 ```
 
-**That's it!** All 41 plugins are now available in your Claude Code session.
+Done. All plugins are now available in your next Claude Code session.
 
-## 🌟 Features
+---
 
-### 🤖 Autonomous Agents (21)
+## What's Inside
 
-Delegate entire tasks to specialized AI agents that work independently:
+### 53 Plugins in 4 Categories
 
+```
+ariff-claude-plugins/
+|
+|-- 22 Agents      autonomous workers that handle entire tasks
+|-- 26 Skills      methodologies and knowledge you can apply on demand
+|--  3 Hooks       automatic safeguards that run without you asking
+|--  2 Commands    slash commands for common workflows
+```
+
+### Agents (22) -- delegate entire tasks
+
+Agents are autonomous workers. You give them a task, they figure out the approach, use tools, read files, and deliver results.
+
+| Category | Agents | What they do |
+|----------|--------|-------------|
+| **Development** | architect, backend-dev, frontend-dev, performance-engineer, qa-engineer, security-analyst, refactorer, autonomous-dev-assistant | Build, optimize, test, and secure code |
+| **Analysis** | sequential-thinker, project-planner, analyzer, mentor | Plan, analyze, reason through problems |
+| **Safety** | context-validator, intent-clarifier, pre-action-verifier, scope-boundary-checker, fact-checker, dependency-validator, rollback-planner | Validate before acting, catch mistakes early |
+| **Specialized** | smithery-deployment-agent, smart-routing, setup-orchestrator | Deploy MCP servers, route to optimal models, configure environments |
+
+### Skills (26) -- apply proven methodologies
+
+Skills are knowledge and methodology files that Claude loads when relevant. They teach Claude how to approach specific types of problems.
+
+**Superpowers (9):** brainstorming, writing-plans, executing-plans, subagent-driven-development, verification-before-completion, root-cause-tracing, defense-in-depth, when-stuck, using-superpowers
+
+**Development (12):** github, plugin-creator, plugin-checker, canvas-api, api-docs-generator, ci-cd-helper, code-reviewer, commit-message-generator, error-explainer, performance-optimizer, pr-analyzer, refactor-assistant
+
+**Testing (3):** security-scanner, tdd-workflow, test-writer
+
+**Debugging (2):** systematic-debugger, memory-sync
+
+### Hooks (3) -- automatic safeguards
+
+Hooks run automatically at specific points during Claude's workflow. You don't invoke them -- they watch and act.
+
+| Hook | Event | What it does |
+|------|-------|-------------|
+| assumption-checker | PreToolUse | Warns when Claude makes assumptions instead of checking |
+| memory-sync | Stop | Prompts to save learnings at session end |
+| hooks-reference | PreToolUse | Reference implementation for building your own hooks |
+
+### Commands (2) -- slash commands
+
+| Command | Usage | What it does |
+|---------|-------|-------------|
+| deep-search | `/deep-search "query"` | Multi-source semantic search across GitHub, Reddit, docs |
+| task-folder-manager | `/task-folder-manager` | Create dated, organized task folders |
+
+---
+
+## How to Install (Step by Step)
+
+This guide assumes you've never installed a Claude Code plugin before.
+
+### Step 1: Make sure Claude Code is installed
+
+Open your terminal and run:
 ```bash
-@architect-agent Design a scalable microservices architecture for my e-commerce platform
+claude --version
 ```
 
-| Category | Agents | What They Do |
-|----------|--------|--------------|
-| **Development** (8) | architect, backend-dev, frontend-dev, performance-engineer, qa-engineer, security-analyst, refactorer, autonomous-dev-assistant | Build, optimize, and secure your code |
-| **Analysis** (4) | sequential-thinker, project-planner, analyzer, mentor | Plan, analyze, and guide your work |
-| **Safety Checkers** (7) | context-validator, intent-clarifier, pre-action-verifier, scope-boundary-checker, fact-checker, dependency-validator, rollback-planner | Validate before acting, prevent errors |
-| **Specialized** (2) | smithery-deployment-agent, smart-routing | Deploy MCP servers, optimize model usage |
+If you see a version number (e.g., `2.1.76`), you're good. If not, install Claude Code first from [claude.ai/code](https://claude.ai/code).
 
-### ⚡ Power Skills (15)
-
-Apply proven methodologies instantly:
-
-```bash
-Use the systematic-debugging skill to find the root cause of this memory leak
-```
-
-**Superpowers** (10): brainstorming, writing-plans, executing-plans, subagent-driven-development, verification-before-completion, root-cause-tracing, defense-in-depth, systematic-debugging, when-stuck, using-superpowers
-
-**Development** (3): github-operations, plugin-creator, plugin-checker
-
-**Reference** (2): hooks-reference, canvas-api
-
-### 🛡️ Smart Hooks (2)
-
-Automatic safeguards that run without you asking:
-
-- **assumption-checker** - Warns when Claude makes assumptions, enforces Canvas LMS verification
-- **memory-sync** - Prompts to save learnings to mem0 and Obsidian at session end
-
-### 📋 Custom Commands (2)
-
-Slash commands for common workflows:
-
-- `/deep-search` - Multi-source semantic search (GitHub, Reddit, docs)
-- `/task-folder-manager` - Create dated, organized task folders
-
-## 📊 Architecture
-
-### How It Works
-
-```mermaid
-graph LR
-    A[👤 User] -->|installs| B[ariff-claude-plugins]
-    B -->|copies to| C[~/.claude/]
-    C -->|loads| D[🤖 Claude Code]
-
-    D -->|uses| E[21 Agents]
-    D -->|applies| F[15 Skills]
-    D -->|triggers| G[2 Hooks]
-    D -->|runs| H[2 Commands]
-
-    E --> I[💪 Supercharged Claude]
-    F --> I
-    G --> I
-    H --> I
-
-    style A fill:#4CAF50,color:#fff
-    style I fill:#FF9800,color:#fff
-    style D fill:#2196F3,color:#fff
-```
-
-### Installation Flow
-
-```mermaid
-flowchart TD
-    START[🚀 Run install.sh] --> CHECK{Detect OS}
-
-    CHECK -->|macOS/Linux| UNIX[Unix Install]
-    CHECK -->|Windows| WIN[Windows Install]
-
-    UNIX --> COPY[📦 Copy Plugins]
-    WIN --> COPY
-
-    COPY --> CAT{Check Category}
-
-    CAT -->|Agent| A[~/.claude/agents/]
-    CAT -->|Skill| S[~/.claude/skills/]
-    CAT -->|Hook| H[~/.claude/hooks/]
-    CAT -->|Command| C[~/.claude/commands/]
-
-    A --> VERIFY[✅ Verify Install]
-    S --> VERIFY
-    H --> VERIFY
-    C --> VERIFY
-
-    VERIFY --> SUCCESS[🎉 Ready to Use!]
-
-    style START fill:#4CAF50,color:#fff
-    style SUCCESS fill:#4CAF50,color:#fff
-    style CHECK fill:#2196F3,color:#fff
-```
-
-### Plugin Distribution
-
-```mermaid
-%%{init: {'theme':'base', 'themeVariables': { 'pie1':'#4CAF50', 'pie2':'#FF9800', 'pie3':'#2196F3', 'pie4':'#f44336'}}}%%
-pie title 41 Plugins by Category
-    "Agents" : 21
-    "Skills" : 15
-    "Hooks" : 2
-    "Commands" : 2
-```
-
-### Complete Plugin Tree
-
-```mermaid
-graph TD
-    ROOT["🔌 41 Plugins"]
-
-    ROOT --> AGENTS["🤖 Agents (21)"]
-    ROOT --> SKILLS["⚡ Skills (15)"]
-    ROOT --> HOOKS["🛡️ Hooks (2)"]
-    ROOT --> CMDS["📋 Commands (2)"]
-
-    AGENTS --> A1["👨‍💻 Development (8)"]
-    AGENTS --> A2["🧠 Analysis (4)"]
-    AGENTS --> A3["✅ Checkers (7)"]
-    AGENTS --> A4["🎯 Specialized (2)"]
-
-    A1 --> A1a["architect"]
-    A1 --> A1b["backend-dev"]
-    A1 --> A1c["frontend-dev"]
-    A1 --> A1d["performance-engineer"]
-    A1 --> A1e["qa-engineer"]
-    A1 --> A1f["security-analyst"]
-    A1 --> A1g["refactorer"]
-    A1 --> A1h["autonomous-dev-assistant"]
-
-    A2 --> A2a["sequential-thinker"]
-    A2 --> A2b["project-planner"]
-    A2 --> A2c["analyzer"]
-    A2 --> A2d["mentor"]
-
-    A3 --> A3a["context-validator"]
-    A3 --> A3b["intent-clarifier"]
-    A3 --> A3c["pre-action-verifier"]
-    A3 --> A3d["scope-boundary-checker"]
-    A3 --> A3e["fact-checker"]
-    A3 --> A3f["dependency-validator"]
-    A3 --> A3g["rollback-planner"]
-
-    A4 --> A4a["smithery-deployment-agent"]
-    A4 --> A4b["smart-routing"]
-
-    SKILLS --> S1["🌟 Superpowers (10)"]
-    SKILLS --> S2["🛠️ Development (3)"]
-    SKILLS --> S3["📚 Reference (2)"]
-
-    S1 --> S1a["brainstorming"]
-    S1 --> S1b["writing-plans"]
-    S1 --> S1c["executing-plans"]
-    S1 --> S1d["subagent-driven-development"]
-    S1 --> S1e["verification-before-completion"]
-    S1 --> S1f["root-cause-tracing"]
-    S1 --> S1g["defense-in-depth"]
-    S1 --> S1h["systematic-debugging"]
-    S1 --> S1i["when-stuck"]
-    S1 --> S1j["using-superpowers"]
-
-    S2 --> S2a["github-operations"]
-    S2 --> S2b["plugin-creator"]
-    S2 --> S2c["plugin-checker"]
-
-    S3 --> S3a["hooks-reference"]
-    S3 --> S3b["canvas-api"]
-
-    HOOKS --> H1["assumption-checker<br/>(PreToolUse)"]
-    HOOKS --> H2["memory-sync<br/>(Stop)"]
-
-    CMDS --> C1["deep-search"]
-    CMDS --> C2["task-folder-manager"]
-
-    style ROOT fill:#9C27B0,color:#fff
-    style AGENTS fill:#4CAF50,color:#fff
-    style SKILLS fill:#FF9800,color:#fff
-    style HOOKS fill:#2196F3,color:#fff
-    style CMDS fill:#f44336,color:#fff
-```
-
-### Cross-Device Sync
-
-```mermaid
-sequenceDiagram
-    participant M as 💻 Mac
-    participant O as ☁️ OneDrive
-    participant W as 🖥️ Windows
-    participant G as 🐙 GitHub
-
-    Note over M,G: Seamless Multi-Device Workflow
-
-    M->>O: Save changes locally
-    O->>W: Auto-sync via cloud
-
-    M->>G: git push updates
-    W->>G: git pull updates
-
-    Note over M,W: Both devices always in sync
-
-    W->>W: Run setup-device.sh
-    Note over W: Installs to ~/.claude/
-
-    M->>M: Run setup-device.sh
-    Note over M: Installs to ~/.claude/
-```
-
-## 🚀 Installation
-
-### Prerequisites
-
-- [Claude Code](https://claude.ai/code) installed
-- Git installed
-- macOS, Linux, or Windows
-
-### Method 1: Quick Install (Recommended)
+### Step 2: Clone this repository
 
 ```bash
 git clone https://github.com/a-ariff/ariff-claude-plugins.git
+```
+
+This downloads the entire marketplace to your machine.
+
+### Step 3: Run the installer
+
+```bash
 cd ariff-claude-plugins
 bash scripts/install.sh
 ```
 
-### Method 2: Install Single Plugin
+The installer copies plugins to your `~/.claude/` directory where Claude Code can find them.
 
+### Step 4: Verify it worked
+
+Start a new Claude Code session:
 ```bash
-bash scripts/install.sh --plugin architect-agent
+claude
 ```
 
-### Method 3: Manual Install
-
-```bash
-# Copy specific category
-cp -r plugins/architect ~/.claude/agents/
+Then type:
+```
+/browse
 ```
 
-## 📖 Usage Examples
+You should see all 53 plugins listed. If you see them, installation is complete.
 
-### Using Agents
+### How it works (visual guide)
 
-```bash
-# Delegate system design
-@architect-agent Design a caching layer for high-traffic API
-
-# Security review
-@security-analyst Review this authentication code for vulnerabilities
-
-# Performance optimization
-@performance-engineer Optimize this database query
+```
+                    YOUR MACHINE
+    +------------------------------------------+
+    |                                          |
+    |  ariff-claude-plugins/                   |
+    |  (downloaded repo)                       |
+    |       |                                  |
+    |       | install.sh copies to:            |
+    |       v                                  |
+    |  ~/.claude/                              |
+    |  |-- agents/     (22 agent files)        |
+    |  |-- skills/     (26 skill files)        |
+    |  |-- hooks/      (3 hook configs)        |
+    |  |-- commands/   (2 command files)        |
+    |       |                                  |
+    |       | Claude Code reads from ~/.claude |
+    |       v                                  |
+    |  Claude Code CLI                         |
+    |  (now has 53 plugins available)          |
+    |                                          |
+    +------------------------------------------+
 ```
 
-### Using Skills
+### Alternative: Install a single plugin
 
+Don't want all 53? Install just what you need:
 ```bash
-# Apply debugging methodology
-Use the systematic-debugging skill to investigate this bug
-
-# Brainstorm solutions
-Apply the brainstorming skill to generate API design alternatives
-
-# Execute with verification
-Use the verification-before-completion skill for this deployment
+bash scripts/install.sh --plugin architect
+bash scripts/install.sh --plugin security-analyst
+bash scripts/install.sh --plugin systematic-debugger
 ```
 
-### Using Commands
+### Updating
 
-```bash
-# Deep search across sources
-/deep-search "react server components best practices" --sources github,docs
-
-# Create organized task folder
-/task-folder-manager --name "new-feature-implementation"
-```
-
-## 💡 Use Cases
-
-### For Solo Developers
-
-- **Code faster** with specialized development agents
-- **Learn continuously** with the mentor agent
-- **Catch errors early** with safety checker agents
-- **Organize work** with task management commands
-
-### For Teams
-
-- **Standardize workflows** with shared skills
-- **Document decisions** with architecture agents
-- **Ensure quality** with QA and security agents
-- **Onboard quickly** with reference skills
-
-### For Students
-
-- **Learn best practices** from specialized agents
-- **Debug systematically** with debugging skills
-- **Plan projects** with project-planner agent
-- **Integrate with Canvas LMS** using canvas-api skill
-
-## 🎓 Documentation
-
-- [Plugin Structure Guide](./docs/PLUGIN_STRUCTURE.md) - How plugins work internally
-- [Categories Guide](./docs/CATEGORIES.md) - Detailed breakdown of each category
-- [Contributing Guide](./CONTRIBUTING.md) - How to create your own plugins
-- [Setup Complete Guide](./SETUP-COMPLETE.md) - Verification and troubleshooting
-
-## 🌍 Cross-Device Setup
-
-Your plugins sync across all devices:
-
-1. **Install on Device 1** (Mac):
-   ```bash
-   bash scripts/install.sh
-   ```
-
-2. **Auto-sync via OneDrive** - Changes sync automatically
-
-3. **Install on Device 2** (Windows):
-   ```powershell
-   .\scripts\install.ps1
-   ```
-
-All devices stay synchronized with the same plugin configuration.
-
-## 🔧 Advanced Usage
-
-### Create Your Own Plugin
-
-```bash
-# Use the plugin-creator skill
-Use the plugin-creator skill to make a new database optimization agent
-```
-
-### Validate Plugin Structure
-
-```bash
-bash scripts/validate-plugin.sh plugins/your-plugin
-```
-
-### Update from Marketplace
-
+When new plugins are added:
 ```bash
 cd ariff-claude-plugins
 git pull origin main
 bash scripts/install.sh
 ```
 
-## 🤝 Contributing
+### Uninstalling
 
-We welcome contributions! See [CONTRIBUTING.md](./CONTRIBUTING.md) for guidelines.
+```bash
+bash scripts/install.sh --uninstall
+```
+
+---
+
+## Usage Guide
+
+### Using Agents
+
+Agents are the most powerful feature. Describe what you want and Claude delegates to the right agent.
+
+**Example workflow:**
+
+```
++-------------------+     +-------------------+     +-------------------+
+|                   |     |                   |     |                   |
+|  You: "review     |---->|  Claude selects   |---->|  security-analyst |
+|  this code for    |     |  security-analyst |     |  reads code,      |
+|  vulnerabilities" |     |  agent            |     |  checks OWASP,    |
+|                   |     |                   |     |  reports findings  |
++-------------------+     +-------------------+     +-------------------+
+```
+
+More examples:
+```
+"Design a caching layer for my high-traffic API"
+  -> architect agent handles system design
+
+"Review this code for security vulnerabilities"
+  -> security-analyst agent runs a full review
+
+"Optimize this database query that's taking 3 seconds"
+  -> performance-engineer agent profiles and fixes it
+
+"Plan the implementation for this new feature"
+  -> project-planner agent breaks it down into steps
+
+"Help me understand how this authentication flow works"
+  -> mentor agent explains at your level
+```
+
+### Using Skills
+
+Skills are invoked when Claude recognizes a relevant situation, or you can ask directly:
+
+```
+"Use the systematic-debugger skill to find this memory leak"
+"Apply the brainstorming skill to generate API design alternatives"
+"Use verification-before-completion for this deployment"
+```
+
+### Using Commands
+
+Slash commands for quick actions:
+
+```
+/deep-search "react server components best practices"
+/task-folder-manager --name "feature-auth-rewrite"
+```
+
+### Using Hooks
+
+Hooks run automatically. No action needed from you.
+
+```
++------------------+     +--------------------+     +------------------+
+|                  |     |                    |     |                  |
+|  Claude is about |---->|  assumption-checker|---->|  "Warning: you   |
+|  to use a tool   |     |  hook fires        |     |  assumed X, did  |
+|                  |     |  (PreToolUse)      |     |  you verify it?" |
++------------------+     +--------------------+     +------------------+
+```
+
+---
+
+## Architecture
+
+### Plugin loading flow
+
+```
+Session Start
+     |
+     v
+Claude Code reads ~/.claude/
+     |
+     +-- agents/*.md      -> loaded on demand when task matches
+     +-- skills/*/SKILL.md -> descriptions loaded, full content on invoke
+     +-- hooks/hooks.json  -> always active, fires on matching events
+     +-- commands/*.md     -> available as /slash-commands
+```
+
+### Plugin structure
+
+Every plugin follows this structure:
+```
+my-plugin/
+  .claude-plugin/
+    plugin.json          # manifest (name, version, description)
+  agents/                # agent definitions (markdown)
+  skills/                # skill definitions (markdown)
+  hooks/
+    hooks.json           # hook event configuration
+  commands/              # slash command definitions
+  scripts/               # shell scripts for hooks
+```
+
+### Supported hook events (22 total)
+
+| Category | Events |
+|----------|--------|
+| Session | SessionStart, SessionEnd |
+| User Input | UserPromptSubmit |
+| Tool Use | PreToolUse, PostToolUse, PostToolUseFailure, PermissionRequest |
+| Completion | Stop, SubagentStop, TaskCompleted, TeammateIdle |
+| Context | PreCompact, PostCompact, InstructionsLoaded |
+| Config | ConfigChange |
+| Worktree | WorktreeCreate, WorktreeRemove |
+| MCP | Elicitation, ElicitationResult |
+| System | Notification |
+
+### Compatibility
+
+| Requirement | Details |
+|-------------|---------|
+| Claude Opus 4.6 | Full support (1M context) |
+| Claude Sonnet 4.6 | Full support (1M context) |
+| Claude Haiku 4.5 | Full support (200k context) |
+| Claude Code version | 2.1+ recommended |
+| Operating systems | macOS, Linux, Windows (WSL) |
+| Git worktree isolation | Supported |
+| MCP integration | Supported (stdio, HTTP, SSE) |
+
+---
+
+## Statistics
+
+| Metric | Count |
+|--------|-------|
+| Total plugins | 53 |
+| Agents | 22 (42%) |
+| Skills | 26 (49%) |
+| Hooks | 3 (5%) |
+| Commands | 2 (4%) |
+| Plugin component types | 7 (agents, skills, commands, hooks, MCP, LSP, output styles) |
+| Supported hook events | 22 |
+| Supported models | 3 (Opus 4.6, Sonnet 4.6, Haiku 4.5) |
+| Install time | < 30 seconds |
+
+---
+
+## Documentation
+
+- [Plugin Structure Guide](./docs/PLUGIN_STRUCTURE.md) -- how plugins work internally
+- [Categories Guide](./docs/CATEGORIES.md) -- detailed breakdown of each category
+- [Contributing Guide](./CONTRIBUTING.md) -- how to create your own plugins
+- [Changelog](./CHANGELOG.md) -- version history
+- [Quick Start](./QUICKSTART.md) -- fast setup guide
+- [Setup Verification](./SETUP-COMPLETE.md) -- troubleshooting
+
+---
+
+## Use Cases
+
+### For solo developers
+- Delegate code reviews to the security-analyst and code-reviewer
+- Use project-planner before starting any feature
+- Let systematic-debugger find root causes
+- Have architect agent design your system before you code
+
+### For teams
+- Standardize workflows with shared skills
+- Safety checker agents catch mistakes before they ship
+- QA engineer agent handles test strategy
+- Plugin-creator skill helps build team-specific plugins
+
+### For students
+- Mentor agent explains concepts at your level
+- Canvas API skill integrates with university LMS
+- Sequential-thinker breaks complex problems into steps
+- Writing-plans skill teaches you to plan before coding
+
+---
+
+## Contributing
+
+Contributions welcome. See [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 **Quick contribution:**
 1. Fork this repository
 2. Create your plugin in `plugins/your-plugin/`
-3. Add to `marketplace.json`
-4. Submit pull request
-
-## 📊 Statistics
-
-| Metric | Count |
-|--------|-------|
-| **Total Plugins** | 41 |
-| **Agents** | 21 (51%) |
-| **Skills** | 15 (37%) |
-| **Hooks** | 2 (5%) |
-| **Commands** | 2 (5%) |
-| **Lines of Code** | 5,000+ |
-| **Documentation Pages** | 8 |
-| **Install Time** | < 30 seconds |
-
-## 🌟 Why Choose This Marketplace?
-
-| Feature | This Marketplace | Others |
-|---------|------------------|--------|
-| **Ready to Use** | ✅ Production-tested | ⚠️ Experimental |
-| **Comprehensive** | ✅ 41 plugins | ❌ 5-10 plugins |
-| **Documentation** | ✅ Complete guides | ⚠️ Basic README |
-| **Safety** | ✅ Checker agents | ❌ No validation |
-| **Cross-Device** | ✅ Auto-sync | ❌ Manual setup |
-| **One-Line Install** | ✅ Automated | ⚠️ Complex setup |
-| **Updates** | ✅ Easy git pull | ❌ Manual updates |
-
-## 📜 License
-
-MIT License - see [LICENSE](./LICENSE) for details.
-
-Free to use, modify, and distribute. Attribution appreciated!
-
-## 🙏 Acknowledgments
-
-- [Claude Code](https://claude.ai/code) by Anthropic
-- [Smithery](https://smithery.ai/) for MCP hosting
-- The Claude Code community
-
-## 🔗 Links
-
-- **Repository**: https://github.com/a-ariff/ariff-claude-plugins
-- **Issues**: https://github.com/a-ariff/ariff-claude-plugins/issues
-- **Discussions**: https://github.com/a-ariff/ariff-claude-plugins/discussions
-- **Author**: [@a-ariff](https://github.com/a-ariff)
-
-## ⭐ Star This Repo
-
-If you find this marketplace useful, please consider starring it! ⭐
-
-It helps others discover these powerful plugins.
+3. Run `bash scripts/validate-plugin.sh plugins/your-plugin`
+4. Submit a pull request
 
 ---
 
-<div align="center">
+## Why this marketplace?
 
-**Made with ❤️ for the Claude Code community**
+| Feature | This marketplace | Typical repos |
+|---------|-----------------|---------------|
+| Production-tested | Yes, 53 plugins | 5-10 experimental plugins |
+| Documentation | Full guides, visual diagrams, examples | Basic README |
+| Safety layer | 7 checker agents + 3 hooks | None |
+| Model support | Opus 4.6, Sonnet 4.6, Haiku 4.5 | Single model |
+| One-line install | `bash scripts/install.sh` | Manual file copying |
+| Cross-device sync | Git-based, works with any cloud storage | Not supported |
+| Updates | `git pull && bash scripts/install.sh` | Manual |
 
-[⬆ Back to Top](#-claude-code-plugin-marketplace)
+---
 
-</div>
+## License
+
+MIT License -- see [LICENSE](./LICENSE) for details.
+
+---
+
+## Links
+
+- **Repository**: https://github.com/a-ariff/ariff-claude-plugins
+- **Issues**: https://github.com/a-ariff/ariff-claude-plugins/issues
+- **Author**: [@a-ariff](https://github.com/a-ariff)
+
+---
+
+If this marketplace is useful to you, consider giving it a star. It helps others find these plugins.
