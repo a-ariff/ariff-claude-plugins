@@ -5,8 +5,9 @@ Add these topics to your repository for maximum discoverability:
 ## How to Add Topics
 
 1. Go to https://github.com/a-ariff/ariff-claude-plugins
-2. Click "⚙️" next to "About" (right sidebar)
-3. Add these topics in the "Topics" field
+2. Click the gear icon next to "About" (right sidebar)
+3. Add topics in the "Topics" field
+4. Set the description (see below)
 
 ## Recommended Topics (Max 20)
 
@@ -33,54 +34,18 @@ developer-productivity
 opensource
 ```
 
-## Category-Specific Topics
-
-### For Agents
-- autonomous-agents
-- ai-agents
-- specialized-agents
-
-### For Skills
-- ai-skills
-- superpowers
-- development-skills
-
-### For Hooks
-- automation-hooks
-- safety-hooks
-- pre-validation
-
-### For Commands
-- slash-commands
-- workflow-automation
-- custom-commands
-
-## SEO Keywords in Repository Description
+## Repository Description
 
 Use this as your repository description:
 
 ```
-🔌 Production-ready Claude Code plugin marketplace with 41 components: 21 autonomous agents, 15 power skills, 2 smart hooks, 2 custom commands. Transform Claude Code into an autonomous development powerhouse. One-line install, cross-device sync, comprehensive documentation.
+53 production-ready Claude Code plugins: 22 autonomous agents, 26 power skills, 3 smart hooks, 2 custom commands. Compatible with Claude Opus 4.6, Sonnet 4.6, and Haiku 4.5. One-line install.
 ```
 
-## Social Media Hashtags
+## Social Media
 
-When sharing on Twitter/X, Reddit, etc:
+When sharing on Twitter/X, Reddit, Hacker News:
 
 ```
-#ClaudeCode #ClaudeAI #AIAgents #DeveloperTools #Productivity
-#CodeAssistant #AIAutomation #OpenSource #SoftwareEngineering
-#LLM #AIPlugins #DevTools #CodingAssistant
+#ClaudeCode #ClaudeAI #AIAgents #DeveloperTools #OpenSource
 ```
-
-## Search Optimization
-
-Your repository will appear in searches for:
-- "claude code plugins"
-- "claude ai extensions"
-- "autonomous ai agents"
-- "developer productivity tools"
-- "ai coding assistant"
-- "claude code marketplace"
-- "ai development tools"
-- "code automation"
