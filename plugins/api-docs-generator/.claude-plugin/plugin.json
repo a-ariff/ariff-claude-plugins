@@ -6,7 +6,6 @@
     "name": "Ariff",
     "email": "info@ariff.dev"
   },
-  "type": "skill",
   "skills": [
     "skills/api-docs-generator.skill.md"
   ]
